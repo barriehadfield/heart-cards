@@ -22,6 +22,7 @@ class HeartModal < Hyperloop::Component
       params.heart.name = e.target.value
     end
     H5 { "Please choose one or more categories from the HEART framework you would like to track" }
+    Categories(heart: params.heart, edit: true)
   end
 
   def actions
