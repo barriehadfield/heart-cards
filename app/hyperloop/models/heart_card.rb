@@ -1,0 +1,2 @@
+class HeartCard < ApplicationRecord
+end
