@@ -13,7 +13,10 @@ class Home < Hyperloop::Router::Component
   def new_card_button
     Sem.GridRow {
       Sem.GridColumn {
-        Sem.Button { "New Heart Card" }
+        Sem.Button(icon: true, labelPosition: 'left') {
+          Sem.Icon(name: :heart)
+          "New Heart Card"
+        }
       }
     }
   end
