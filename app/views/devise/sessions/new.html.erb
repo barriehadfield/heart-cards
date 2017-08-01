@@ -1,0 +1,30 @@
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {class:  'ui large form'}) do |f| %>
+
+    <div class="field">
+      <div class='ui fluid left icon input'>
+        <i aria-hidden="true" class="user icon"></i>
+        <%= f.email_field :email, placeholder: 'Email', autofocus: true %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class='ui fluid left icon input'>
+        <i aria-hidden="true" class="lock icon"></i>
+        <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
+      </div>
+    </div>
+
+    <!-- <% if devise_mapping.rememberable? -%>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%> -->
+
+    <div>
+      <%= f.submit "Log in", class: "ui red large fluid button" %>
+    </div>
+
+    <%= render "devise/shared/links" %>
+
+<% end %>
