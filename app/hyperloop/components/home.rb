@@ -2,20 +2,30 @@ class Home < Hyperloop::Router::Component
 
   render(DIV) do
     MainAppBar()
-    Sem.Container(style: { marginTop: '5em' }) {
+    Sem.Container(style: { marginTop: '2em' }) {
       Sem.Grid {
-        new_card_button
+        Sem.GridRow {
+          Sem.GridColumn {
+            new_heart
+          }
+        }
         heart_cards
       }
     }
   end
 
-  def new_card_button
-    Sem.GridRow {
-      Sem.GridColumn {
-        Sem.Button(icon: true, labelPosition: 'left') {
-          Sem.Icon(name: :heart)
-          "New Heart Card"
+  def new_heart
+
+    button = Sem.Button(icon: true, labelPosition: 'left') {
+      Sem.Icon(name: :heart)
+      "New Heart Card"
+    }.as_node
+
+    Sem.Modal(trigger: button.to_n) {
+      Sem.ModalHeader { "New Heart Card" }
+      Sem.ModalContent {
+        Sem.ModalDescription {
+          HeartItem(heart: Heart.new)
         }
       }
     }
