@@ -1,4 +1,4 @@
-class HeartItem < Hyperloop::Component
+class HeartCard < Hyperloop::Component
 
   param :heart
 
