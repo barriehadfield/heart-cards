@@ -6,7 +6,7 @@ class HeartItem < Hyperloop::Component
     Sem.Card(fluid: true) {
       Sem.CardContent {
         Sem.CardHeader { params.heart.name }
-        Sem.CardContent { "and the content here" }
+        Sem.CardContent { "and the content here and some more here" }
       }
     }
   end
