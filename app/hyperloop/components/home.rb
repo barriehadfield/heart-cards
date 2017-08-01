@@ -3,7 +3,6 @@ class Home < Hyperloop::Router::Component
   render(DIV) do
     MainAppBar()
     Sem.Container(style: { marginTop: '5em' }) {
-      IMG(src: 'images/bench.jpg', height: 200)
       Sem.Divider(horizontal: true) { "Or" }
       Sem.Button(primary: true) {"Click me"}
       heading
@@ -11,7 +10,7 @@ class Home < Hyperloop::Router::Component
   end
 
   def heading
-    H1 { "home with alfie" }
+    H1 { "Heart Cards here we come" }
   end
 
 end
