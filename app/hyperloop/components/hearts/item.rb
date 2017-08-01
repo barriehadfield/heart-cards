@@ -1,5 +1,13 @@
 class HeartItem < Hyperloop::Component
+
+  param :heart
+
   render(DIV) do
-    H1 { "here card 1" }
+    Sem.Card(fluid: true) {
+      Sem.CardContent {
+        Sem.CardHeader { params.heart.name }
+        Sem.CardContent { "and the content here" }
+      }
+    }
   end
 end

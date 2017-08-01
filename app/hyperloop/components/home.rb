@@ -15,7 +15,6 @@ class Home < Hyperloop::Router::Component
   def heart_cards
     Heart.each do |heart|
       HeartItem(heart: heart)
-      BR
     end
   end
 
