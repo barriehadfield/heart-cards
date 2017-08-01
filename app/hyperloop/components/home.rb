@@ -3,14 +3,20 @@ class Home < Hyperloop::Router::Component
   render(DIV) do
     MainAppBar()
     Sem.Container(style: { marginTop: '5em' }) {
-      Sem.Divider(horizontal: true) { "Or" }
-      Sem.Button(primary: true) {"Click me"}
-      heading
+      new_card_button
+      heart_cards
     }
   end
 
-  def heading
-    H1 { "Heart Cards here we come" }
+  def new_card_button
+    Sem.Button { "New Heart Card" }
+  end
+
+  def heart_cards
+    Heart.each do |heart|
+      HeartItem(heart: heart)
+      BR
+    end
   end
 
 end

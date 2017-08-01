@@ -1,2 +1,0 @@
-class HeartCard < ApplicationRecord
-end

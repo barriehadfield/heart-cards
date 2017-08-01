@@ -15,11 +15,11 @@ ActiveRecord::Schema.define(version: 20170801134656) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "heart_cards", id: :serial, force: :cascade do |t|
+  create_table "hearts", id: :serial, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["id"], name: "index_heart_cards_on_id"
+    t.index ["id"], name: "index_hearts_on_id"
   end
 
   create_table "hyperloop_connections", force: :cascade do |t|

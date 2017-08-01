@@ -1,0 +1,2 @@
+class Heart < ApplicationRecord
+end
