@@ -18,15 +18,23 @@ class HeartModal < Hyperloop::Component
   end
 
   def content
+    P { "Please give this Heart Card a good clear name" }
+    # BR()
     Sem.Input(placeholder: "Heart Card name", fluid: true, defaultValue: params.heart.name).on(:change) do |e|
       params.heart.name = e.target.value
     end
-    H5 { "Please choose one or more categories from the HEART framework you would like to track" }
+    BR()
+    P { "Choose one or more categories from the HEART framework you would like to track" }
     Categories(heart: params.heart, edit: true)
   end
 
   def actions
-    Sem.Button { "Close" }
+    Sem.Button(primary: true) { "Save" }.on(:click) { save } if params.heart.changed?
+    Sem.Button { "Cancel" }
+  end
+
+  def save
+    params.heart.save
   end
 
 end

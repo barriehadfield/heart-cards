@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801134656) do
+ActiveRecord::Schema.define(version: 20170802115854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,26 @@ ActiveRecord::Schema.define(version: 20170801134656) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "happiness_goals"
+    t.text "happiness_signals"
+    t.text "happiness_metrics"
+    t.text "engagement_goals"
+    t.text "engagement_signals"
+    t.text "engagement_metrics"
+    t.text "adoption_goals"
+    t.text "adoption_signals"
+    t.text "adoption_metrics"
+    t.text "retention_goals"
+    t.text "retention_signals"
+    t.text "retention_metrics"
+    t.text "task_goals"
+    t.text "task_signals"
+    t.text "task_metrics"
+    t.boolean "happiness_bool", default: false
+    t.boolean "engagement_bool", default: false
+    t.boolean "adoption_bool", default: false
+    t.boolean "retention_bool", default: false
+    t.boolean "task_bool", default: false
     t.index ["id"], name: "index_hearts_on_id"
   end
 

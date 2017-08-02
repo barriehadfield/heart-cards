@@ -5,7 +5,7 @@ class MainAppBar < Hyperloop::Router::Component
   end
 
   def app_bar
-    Sem.Menu(borderless: true, color: :red, inverted: true, size: :huge) {
+    Sem.Menu(borderless: true, color: :blue, inverted: true, size: :huge) {
       Sem.Container {
         Sem.MenuItem { heart_cards }
         Sem.MenuItem { members }
