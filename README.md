@@ -12,6 +12,7 @@ You can read more about HEART here: https://www.interaction-design.org/literatur
 
 If you are on a journey of continuous improvement, HEART can help you stay true to a build-measure-learn software development lifecycle and can unite designers, developers, product managers and testers.
 
+
 ## Technology
 
 This Isomorphic application is a showcase for Hyperloop's COMPS architecture, all written in beautiful Ruby. The goal of publishing this application is to show how all these technology work together in a live application.
@@ -28,7 +29,7 @@ This Isomorphic application is a showcase for Hyperloop's COMPS architecture, al
 You will need to install Ruby, Rails and Postgres SQL first.
 
 ```
-git clone https://github.com/barriehadfield/hearty.git
+git clone https://github.com/barriehadfield/heart-cards.git
 bundle
 gem install foreman
 rake db:create
