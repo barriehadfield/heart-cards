@@ -17,24 +17,32 @@ If you are on a journey of continuous improvement, HEART can help you stay true 
 
 This Isomorphic application is a showcase for Hyperloop's COMPS architecture, all written in beautiful Ruby. The goal of publishing this application is to show how all these technology work together in a live application.
 
+We will be working with the following technologies:
+
 + Hyperloop Isomorphic Components, Opertions, Models, Policies and Stores (COMPS for short)
-+ Rails 5.1 with ActionCable, Yarn and Webpacker
-+ Devise for authentication
++ Hyper-Router which is a DSL wrapping React Router
++ Rails 5.1 with ActionCable for pushing changes between connected clients
++ Opel Hot Reloader for developer bliss with no page reloads while coding
++ Yarn and Webpacker for managing JavaScript libraries
++ The Devise Gem for authentication (connected to Hyperloop)
 + React for the interactive UI (used by Hyperloop)
-+ Semantic UI for the stylesheet
-+ The amazing React-Semantic-UI for integrating React and Semantic UI
++ The React-Semantic-UI for integrating React and Semantic UI
 
 ## Setup
 
-You will need to install Ruby, Rails and Postgres SQL first.
+You will need to install **Ruby**, **Rails 5.1.x**, **Yarn** and **Postgres SQL** first.
+
+> Note: This tutorial uses Postrges SQL so that it is deployable to Heroku. If you do not want to use Postgres then you will need to swap it our for MYSQL, but please do not use SQLITE as it is not capable of providing the concurrency Hyperloop requires. There are detailed Postgres installation instructions here: https://wiki.postgresql.org/wiki/Detailed_installation_guides
+
+After you have done that run the following sequence of commands from your console:
 
 ```
 git clone https://github.com/barriehadfield/heart-cards.git
 cd heart-cards
 bundle
 gem install foreman
-rake db:create
-rake db:migrate
+rails db:create
+rails db:migrate
 yarn
 bin/webpack
 ```
@@ -43,11 +51,11 @@ Start the server:
 
 `foreman start`
 
-Navigate to
+Navigate to:
 
 `http://localhost:5000/`
 
-And you should be rewarded with a running application.
+And you should be rewarded with a running application. If you are not then there is something not right in the setup. If you cannot resolve it then please reach out to us in the Gitter Hyperloop room: https://gitter.im/ruby-hyperloop/chat
 
 ## Code
 
