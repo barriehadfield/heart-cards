@@ -141,7 +141,25 @@ In this case, the first thing our `Home` Component does is render another Compon
 
 Lets look at the `render` macro of our MainAppBar Component and then discuss this mysterious `Sem` object.
 
-[Semantic UI React](https://react.semantic-ui.com/) is a React library which we are accessing from within our Ruby code!
+[Semantic UI React](https://react.semantic-ui.com/) is a React library which we are accessing from within our Ruby code.
+
+`Sem.Menu` is this Component: https://react.semantic-ui.com/collections/menu
+
+If we were writing it in JSX it would look like this:
+
+```javascript
+// if this were in JSX
+return (
+  <Menu inverted color='blue' size='huge'>
+    <Container>
+      <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} > HOME </Menu.Item>
+      <Menu.Item name='members' active={activeItem === 'members'} onClick={this.handleItemClick} > MEMBERS </Menu.Item>
+    </Container>
+  </Menu>
+)
+```
+
+And here is our Ruby version:
 
 ```ruby
 # app/hyperloop/components/shared/main_app_bar.rb
@@ -155,45 +173,25 @@ render(DIV) do
 end
 ```
 
-```javascript
-// if this were in JSX
-return (
-  <Menu inverted color='blue' size='huge'>
-    <Container>
-      <Menu.Item > HEART CARDS </Menu.Item>
-      <Menu.Item> MEMBERS </Menu.Item>
-    </Container>
-  </Menu>
-)
-```
-
-
-
-To use any JavaScript library you simply complete a few setup steps. Firstly you install the library with Yarn:
-
-```
-yarn add semantic-ui-react
-```
-
-Next you have had Webpack package it:
-
-```
-bin/webpack
-```
-
-The you `require` it so that the JavaScript object is created:
+If you are wondering where the `Sem` object came from, there were two things we had to do to get it - we had to have Webpack `require` it for us:
 
 ```javascript
 // app/javascript/packs/application.js
 Sem = require('semantic-ui-react');
 ```
 
-and finally you import it into Hyperloop so you can access it in your Ruby code.
+and then you import it into Hyperloop so you can access it in your Ruby code.
 
 ```ruby
+# app/hyperloop/shared/imports.rb
 class Sem < React::NativeLibrary
   imports 'Sem'
 end
 ```
+There is a quick tutorial on the Hyperloop site which explains how to setup Yarn and Webpacker and import libraries like semantic-ui-react or react-bootstrap(or any React of JavaScript library): http://ruby-hyperloop.io/tutorials/hyperlooprails/webpacker/
 
-`Sem.Menu` is this Component: https://react.semantic-ui.com/collections/menu
+## The HeartModal Component
+
+Going back to our `Home` Component code, you will see that we invoke the `HeartModal` Component passing in an empty `Heart` object and a `mode` param.
+
+`HeartModal(heart: Heart.new, mode: :new)`
