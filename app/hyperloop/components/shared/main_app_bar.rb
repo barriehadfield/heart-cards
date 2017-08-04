@@ -1,10 +1,6 @@
 class MainAppBar < Hyperloop::Router::Component
 
   render(DIV) do
-    app_bar
-  end
-
-  def app_bar
     Sem.Menu(borderless: true, color: :blue, inverted: true, size: :huge) {
       Sem.Container {
         Sem.MenuItem { heart_cards }
@@ -20,5 +16,4 @@ class MainAppBar < Hyperloop::Router::Component
   def members
     NavLink("/members", class: "navlink", active_class: 'active') { "MEMBERS" }
   end
-
 end

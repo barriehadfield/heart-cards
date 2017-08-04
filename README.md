@@ -98,6 +98,7 @@ The Home Component generates the main user interface for this application. We wi
 > Note on coding style: There are two coding conventions used here which are purely a matter of coding style. You will notice that the HTML elements (`DIV`) are in caps which would normally indicate a constant. We are using caps simply as we believe it makes the code easier to read. If you do not like this then `div` will work just as well. Secondly (and perhaps more controversially) you will notice the misuse of `{ }` curly braces extending over more than one line whereas the Ruby norm is to use `do end` blocks if the block extends over more than one line and `{ }` if it just one line. Personally, I like curley braces for Component and HTML element blocks and `do end` for conditional or looping logic. I find this easier to read and work with, but if it hurts your eyes you can simply use `do end` instead.
 
 ```ruby
+# app/hyperloop/components/home.rb
 class Home < Hyperloop::Router::Component
 
   render(DIV) do
@@ -129,3 +130,70 @@ class Home < Hyperloop::Router::Component
   end
 end
 ```
+
+Every Hyperloop Component has a `render` macro which is called when the Component is to render. I always like to keep this method near the top of the class so you can quickly see what the Component does.
+
+In this case, the first thing our `Home` Component does is render another Component - `MainAppBar`. That is the key to Component oriented architecture - Components render other Components so your user interface is composed of increasingly smaller contained Components. You will get very used to this pattern.
+
+> Note: You might also notice that 'Home' is not a completely normal Hyperloop Component, as it is derived from `Hyperloop::Router::Component` whereas normal Hyperloop components are classes derived from `Hyperloop::Component`. We are doing this simply because we need to pass information routing down into out `MainAppBar` Component.
+
+### Using JavaScript based React libraries
+
+Lets look at the `render` macro of our MainAppBar Component and then discuss this mysterious `Sem` object.
+
+[Semantic UI React](https://react.semantic-ui.com/) is a React library which we are accessing from within our Ruby code!
+
+```ruby
+# app/hyperloop/components/shared/main_app_bar.rb
+render(DIV) do
+  Sem.Menu(inverted: true, color: :blue, size: :huge) {
+    Sem.Container {
+      Sem.MenuItem { heart_cards }
+      Sem.MenuItem { members }
+    }
+  }
+end
+```
+
+```javascript
+// if this were in JSX
+return (
+  <Menu inverted color='blue' size='huge'>
+    <Container>
+      <Menu.Item > HEART CARDS </Menu.Item>
+      <Menu.Item> MEMBERS </Menu.Item>
+    </Container>
+  </Menu>
+)
+```
+
+
+
+To use any JavaScript library you simply complete a few setup steps. Firstly you install the library with Yarn:
+
+```
+yarn add semantic-ui-react
+```
+
+Next you have had Webpack package it:
+
+```
+bin/webpack
+```
+
+The you `require` it so that the JavaScript object is created:
+
+```javascript
+// app/javascript/packs/application.js
+Sem = require('semantic-ui-react');
+```
+
+and finally you import it into Hyperloop so you can access it in your Ruby code.
+
+```ruby
+class Sem < React::NativeLibrary
+  imports 'Sem'
+end
+```
+
+`Sem.Menu` is this Component: https://react.semantic-ui.com/collections/menu
