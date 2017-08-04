@@ -7,6 +7,7 @@ class HeartCard < Hyperloop::Component
       Sem.CardContent {
         Sem.CardHeader { params.heart.name }
         Sem.CardContent { "and the content here and some more here" }
+        HeartModal(heart: params.heart, mode: :edit)
       }
     }
   end

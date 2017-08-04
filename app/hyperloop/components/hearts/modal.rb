@@ -1,7 +1,7 @@
 class HeartModal < Hyperloop::Component
 
   param :heart
-  param :trigger
+  param :mode
 
   before_mount do
     mutate.open false
@@ -21,10 +21,18 @@ class HeartModal < Hyperloop::Component
         }
       }
     else
+      edit_or_new_button.on(:click) { mutate.open true }
+    end
+  end
+
+  def edit_or_new_button
+    if params.mode == :new
       Sem.Button(icon: true, labelPosition: 'left', primary: true) {
         Sem.Icon(name: :heart)
         "New Heart Card"
-      }.on(:click) { mutate.open true }
+      }
+    else
+      Sem.Button(circular: true, icon: :setting)
     end
   end
 
@@ -44,11 +52,18 @@ class HeartModal < Hyperloop::Component
   end
 
   def cancel
+    params.heart.revert
     mutate.open false
   end
 
   def save
-    params.heart.save
+    params.heart.save.then do |result|
+      if result[:success]
+        mutate.open false
+      else
+        alert "Unable to save Heart Card"
+      end
+    end
   end
 
 end

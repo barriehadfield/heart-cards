@@ -15,11 +15,11 @@ class Home < Hyperloop::Router::Component
   end
 
   def new_heart
-    HeartModal(heart: Heart.new)
+    HeartModal(heart: Heart.new, mode: :new)
   end
 
   def heart_cards
-    Heart.each do |heart|
+    Heart.reverse.each do |heart|
       Sem.GridRow {
         Sem.GridColumn {
           HeartCard(heart: heart)
