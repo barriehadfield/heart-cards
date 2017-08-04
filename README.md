@@ -30,6 +30,7 @@ You will need to install Ruby, Rails and Postgres SQL first.
 
 ```
 git clone https://github.com/barriehadfield/heart-cards.git
+cd heart-cards
 bundle
 gem install foreman
 rake db:create
@@ -45,3 +46,17 @@ Start the server:
 Navigate to
 
 `http://localhost:5000/`
+
+And you should be rewarded with a running application.
+
+## Code
+
+### Where are the Controllers and Views?
+
+There are none, we have replaced all of these parts of thr Rails stack with Isomorphic Hyperloop code. If you have a look at `routes.rb` you will see that we have an automagical route `root 'hyperloop#AppRouter'` which Hyperloop uses to render our root Component `AppRouter`.
+
+This is not the only way to work with Hyperloop, and we could have had a traditional Controller and View and launched the root Hyperloop Component either from the Controller or from within a View, but for now we just don't need all that.
+
+While we are looking at `routes.rb` pay attention to this line at the end of the file (it's important that it remains at the end of the file as this is our catch all route) `match '*all', to: 'hyperloop#AppRouter', via: [:get]`
+
+That last line tells our Rails server to simply route all requests to our Hyperloop Component so we can deal with them there. We will discuss SPA (single page application) routing later.
