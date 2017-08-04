@@ -1,4 +1,4 @@
-class Home < Hyperloop::Router::Component
+class Home < Hyperloop::Component
 
   render(DIV) do
     MainAppBar()
@@ -27,5 +27,4 @@ class Home < Hyperloop::Router::Component
       }
     end
   end
-
 end

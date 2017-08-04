@@ -71,7 +71,7 @@ That last line tells our Rails server to simply route all requests to our Hyperl
 
 ### The AppRouter Component
 
-The first Component we launch is the router. It's job is to read the incomming route and launch the appropriate Component. Simple as that!  
+The first Component we launch is the Router. It's job is to read the incomming route and launch the appropriate Component. Simple as that! We have SPA using React Router to route incoming requests in just a few lines of Ruby code.
 
 ```ruby
 # app/hyperloop/components/shared/app_router.rb
@@ -85,6 +85,47 @@ class AppRouter < Hyperloop::Router
         Route('/members', exact: true, mounts: Members)
       end
     }
+  end
+end
+```
+
+As you can see from the code above, there are just two routes in this application. `/` which will render a Component called `Home` and `/members` which will render a Component called `Members`. As our routing needs in this application are so simple we will not go into routing further, but you can learn more about this Hyper Router here: https://github.com/ruby-hyperloop/hyper-router
+
+### The Home Component
+
+The Home Component generates the main user interface for this application. We will spend a little time going through this line by line as there might be several new concepts here.
+
+> Note on coding style: There are two coding conventions used here which are purely a matter of coding style. You will notice that the HTML elements (`DIV`) are in caps which would normally indicate a constant. We are using caps simply as we believe it makes the code easier to read. If you do not like this then `div` will work just as well. Secondly (and perhaps more controversially) you will notice the misuse of `{ }` curly braces extending over more than one line whereas the Ruby norm is to use `do end` blocks if the block extends over more than one line and `{ }` if it just one line. Personally, I like curley braces for Component and HTML element blocks and `do end` for conditional or looping logic. I find this easier to read and work with, but if it hurts your eyes you can simply use `do end` instead.
+
+```ruby
+class Home < Hyperloop::Router::Component
+
+  render(DIV) do
+    MainAppBar()
+    Sem.Container(style: { marginTop: '2em' }) {
+      Sem.Grid {
+        Sem.GridRow {
+          Sem.GridColumn {
+            new_heart
+          }
+        }
+        heart_cards
+      }
+    }
+  end
+
+  def new_heart
+    HeartModal(heart: Heart.new, mode: :new)
+  end
+
+  def heart_cards
+    Heart.reverse.each do |heart|
+      Sem.GridRow {
+        Sem.GridColumn {
+          HeartCard(heart: heart)
+        }
+      }
+    end
   end
 end
 ```
