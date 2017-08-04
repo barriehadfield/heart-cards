@@ -68,3 +68,23 @@ This is not the only way to work with Hyperloop, and we could have had a traditi
 While we are looking at `routes.rb` pay attention to this line at the end of the file (it's important that it remains at the end of the file as this is our catch all route) `match '*all', to: 'hyperloop#AppRouter', via: [:get]`
 
 That last line tells our Rails server to simply route all requests to our Hyperloop Component so we can deal with them there. We will discuss SPA (single page application) routing later.
+
+### The AppRouter Component
+
+The first Component we launch is the router. It's job is to read the incomming route and launch the appropriate Component. Simple as that!  
+
+```ruby
+# app/hyperloop/components/shared/app_router.rb
+class AppRouter < Hyperloop::Router
+  history :browser
+
+  route do
+    DIV {
+      Switch do
+        Route('/', exact: true, mounts: Home)
+        Route('/members', exact: true, mounts: Members)
+      end
+    }
+  end
+end
+```
