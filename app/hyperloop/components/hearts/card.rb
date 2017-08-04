@@ -10,7 +10,7 @@ class HeartCard < Hyperloop::Component
     Sem.Card(fluid: true) {
       Sem.CardContent {
         Sem.CardHeader { header }
-        Sem.CardContent { "and the content here and some more here" }
+        Sem.CardContent { "and the content here and some more here coming soon" }
       }
     }
     .on(:mouse_enter) { mutate.show_settings true }
