@@ -2,7 +2,7 @@
 
 ## HEART
 
-The Heat Cards application provides tracks and manages the Google inspired HEART process.
+The Heat Cards application provides, tracks, and manages a (Google inspired) software development HEART process.
 
 HEART stands for Happiness, Engagement, Adoption, Retention and Task Success. Traditional product analytics is usually metrics focused, and the function normally depends on gathering as much quantity of data as possible on net promoter scores, cost of acquisition, conversion rates, retention rates and so on.
 
@@ -11,6 +11,12 @@ HEART takes a more holistic approach and recognizes the need to gather quantitiv
 You can read more about HEART here: https://www.interaction-design.org/literature/article/google-s-heart-framework-for-measuring-ux
 
 If you are on a journey of continuous improvement, HEART can help you stay true to a build-measure-learn software development lifecycle and can unite designers, developers, product managers and testers.
+
+## This tutorial
+
+The goal of this tutorial is to provide a fully featured Hyperloop application which demonstrates all aspects of the Hyperloop Isomorphic COMPS architecture with Rails.
+
+This tutorial assumes a working knowledge of Rails and of Hyoerloop and does not go into any setup. If you are just staring wiht Hyperloop then there are better tutorial to start with - specifically the [Hello World](http://ruby-hyperloop.io/tutorials/hyperlooprails/helloworld/) tutorial on the [Hyperloop website](http://ruby-hyperloop.io/) or the most execllent [ToDo](https://github.com/ruby-hyperloop/todo-tutorial) tutorial which takes you through a step by step process of building a Hyperloop application in just 87 lines of code.
 
 
 ## Technology
@@ -32,7 +38,7 @@ We will be working with the following technologies:
 
 You will need to install **Ruby**, **Rails 5.1.x**, **Yarn** and **Postgres SQL** first.
 
-> Note: This tutorial uses Postrges SQL so that it is deployable to Heroku. If you do not want to use Postgres then you will need to swap it our for MYSQL, but please do not use SQLITE as it is not capable of providing the concurrency Hyperloop requires. There are detailed Postgres installation instructions here: https://wiki.postgresql.org/wiki/Detailed_installation_guides
+> Note: This application uses Postrges SQL so that it is deployable to Heroku. If you do not want to use Postgres then you will need to swap it our for MYSQL, but please do not use SQLITE as it is not capable of providing the concurrency Hyperloop requires. There are detailed Postgres installation instructions here: https://wiki.postgresql.org/wiki/Detailed_installation_guides
 
 After you have done that run the following sequence of commands from your console:
 
@@ -141,11 +147,13 @@ In this case, the first thing our `Home` Component does is render another Compon
 
 Lets look at the `render` macro of our MainAppBar Component and then discuss this mysterious `Sem` object.
 
-[Semantic UI React](https://react.semantic-ui.com/) is a React library which we are accessing from within our Ruby code.
+[Semantic UI React](https://react.semantic-ui.com/) is a React library which we are accessing from within our Ruby code. Semantic UI React is a React based DSL wrapper for the famous Semantic UI style sheet.
 
-`Sem.Menu` is this Component: https://react.semantic-ui.com/collections/menu
+There is a quick tutorial on the Hyperloop site which explains how to setup Yarn and Webpacker and import libraries like semantic-ui-react or react-bootstrap(or any React of JavaScript library): http://ruby-hyperloop.io/tutorials/hyperlooprails/webpacker/
 
-If we were writing it in JSX it would look like this:
+`Sem.Menu` is this Component: https://react.semantic-ui.com/collections/menu Lets have a look at the documentation with examples is JSX and write a Ruby version.
+
+For the Menu Component, if we were writing it in JSX it would look like this:
 
 ```javascript
 // if this were in JSX
@@ -173,6 +181,10 @@ render(DIV) do
 end
 ```
 
+There are a few key differences which you need to understand and after that you will find it very easy to translate any JSX example into Ruby.
+
+Firstly, notice that we are accessing the library through an object called `Sem`.
+
 If you are wondering where the `Sem` object came from, there were two things we had to do to get it - we had to have Webpack `require` it for us:
 
 ```javascript
@@ -188,7 +200,12 @@ class Sem < React::NativeLibrary
   imports 'Sem'
 end
 ```
-There is a quick tutorial on the Hyperloop site which explains how to setup Yarn and Webpacker and import libraries like semantic-ui-react or react-bootstrap(or any React of JavaScript library): http://ruby-hyperloop.io/tutorials/hyperlooprails/webpacker/
+
+The other key difference is that we do not use the dot notation in the same way the JSX example does. `Menu.Item` becomes `MenuItem` and so-forth. (TODO Find out why).
+
+Finally notice how the JSX paramaters `inverted color='blue' size='huge'` become a hash `inverted: true, color: :blue, size: :huge` in the Ruby version.
+
+The information in this chapter should equip you with most of what you need to work with any JavaScript or React library. The only things we have not discussed is how to create and pass a React object to another object and how to handle JavaScript callbacks. We will address both these topics later in this tutorial.
 
 ## The HeartModal Component
 
