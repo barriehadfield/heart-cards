@@ -141,7 +141,7 @@ Hyperloop calls the `render` macro to render a Component. I always like to keep 
 
 In this case, the first thing our `Home` Component does is render another Component - `MainAppBar`. That is the key to Component oriented architecture - Components render other Components, so your user interface is composed of increasingly smaller contained Components. You will get very used to this pattern.
 
-> Note: You might also notice that 'Home' is not an entirely standard Hyperloop Component, as it is derived from `Hyperloop::Router::Component` whereas typical Hyperloop components are classes derived from `Hyperloop::Component`. We are doing this because we need to pass information routing down into out `MainAppBar` Component.
+You might also notice that 'Home' is not an entirely standard Hyperloop Component, as it is derived from `Hyperloop::Router::Component` whereas typical Hyperloop components are classes derived from `Hyperloop::Component`. We are doing this because we need to pass information routing down into out `MainAppBar` Component. The reason for this is well covered in [Chapter 6 of the ToDo  tutorial](https://github.com/ruby-hyperloop/todo-tutorial#chapter-6-routing). If you go off and read that now do make sure you come back here as there are still many interesting topics we are about to get into!
 
 ### Using JavaScript based React libraries
 
@@ -181,27 +181,18 @@ render(DIV) do
 end
 ```
 
-There are a few fundamental differences which you need to understand, and after that, you will find it very easy to translate any JSX example into Ruby.
+There are a few simple things you need to understand, and after that, you will find it very easy to translate any JSX example into Ruby and work with any JavaScript or React library.
 
-Firstly, notice that we are accessing the library through an object called `Sem`.
+Firstly, notice that we are accessing the `semantic-ui-react` library through an object called `Sem`.
 
-If you are wondering where the `Sem` object came from, there were two things we had to do to get it - we had to have Webpack `require` it for us:
+If you are wondering where the `Sem` object came from, its as simple as using Yarn and Webpack to package the library then creating a JavaScript object called `Sem` through a `require` of the library.
 
 ```javascript
 // app/javascript/packs/application.js
 Sem = require('semantic-ui-react');
 ```
 
-and then you import it into Hyperloop so you can access it in your Ruby code.
-
-```ruby
-# app/hyperloop/shared/imports.rb
-class Sem < React::NativeLibrary
-  imports 'Sem'
-end
-```
-
-The other key difference is that we do not use the dot notation in the same way the JSX example does. `Menu.Item` becomes `MenuItem` and so-forth. (TODO Find out why).
+The other thing to notice is that we do not use the dot notation in exactly the same way the JSX example does. `Menu.Item` becomes `MenuItem` and so-forth. `Menu.Item` is actually an assignment of the `MenuItem` object within the Menu object. The fact that `Menu.Item` is not imported as something to do with the way Webpack is importing it and beyond the scope of this tutorial.
 
 Finally notice how the JSX paramaters `inverted color='blue' size='huge'` become a hash `inverted: true, color: :blue, size: :huge` in the Ruby version.
 
@@ -209,6 +200,33 @@ The information in this chapter should equip you with most of what you need to w
 
 ## The HeartModal Component
 
-Going back to our `Home` Component code, you will see that we invoke the `HeartModal` Component passing in an empty `Heart` object and a `mode` param.
+`HeartModal` is a self-contained, DRY, multi-functional component. It renders itself as  Button (in an Edit or New state) and then morphs into a Modal when clicked. It handles editing or creating of Heart objects and it achieves all of that in roughly 50 lines of code.  
 
-`HeartModal(heart: Heart.new, mode: :new)`
++ **Multi-functional** - It handles editing or creating of `Heart` objects using the same rendering code and even knows if it should render as a `Button` or as a `Modal`
++ **Self-contained** - all of the functionality is contained within the Component, we do not need to worry about its rendering state (Button or Modal) or even if the Modal should be shown or hidden. There are also no call-backs to worry about.
++ **DRY** - It uses the same Components as the `Card` Component to render the `Heart` object data. The rendering is slightly different, so it does depart in part but were there is no need for difference the code is completely DRY.
+
+#### Interface
+
+In our `Home` Component code, you will notice that we invoke the `HeartModal` Component passing in an empty `Heart` object and a `mode` param.
+
+```ruby
+HeartModal(heart: Heart.new, mode: :new)
+```
+
+And then again in the `Card` Component we use it again:
+
+```ruby
+HeartModal(heart: params.heart, mode: :edit)
+```
+
+I am sure we could simplify the interface and just pass the `Heart` object we would like to operate on and let the `HeartModal` Component figure out if it is a new or existing object and then render itself as a New or Edit  Button but that would be a little to pithy for my liking. The interface to this Component (passing the `Heart` object we want to operate on, and a `mode` param) makes for clear understandable code.
+
+#### Implementation
+
+...
+todo:
+t.boolean :completed, null: false, default: false
+Todo.send(match.params[:scope]).each do |todo|
+param :on_save, type: Proc
+ .on(:blur) { params.on_cancel }   
