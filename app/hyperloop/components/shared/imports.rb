@@ -1,3 +1,3 @@
-class Sem < React::NativeLibrary
-  imports 'Sem'
-end
+# class Sem < React::NativeLibrary
+#   imports 'Sem'
+# end
