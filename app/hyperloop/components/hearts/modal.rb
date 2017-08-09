@@ -9,20 +9,24 @@ class HeartModal < Hyperloop::Component
 
   render(DIV) do
     if state.open
-      Sem.Modal(open: state.open) {
-        Sem.ModalHeader {
-          params.heart.name.nil? || params.heart.name.length == 0 ? "New Heart Card" : params.heart.name
-        }
-        Sem.ModalContent {
-          content
-        }
-        Sem.ModalActions {
-          actions
-        }
-      }
+      render_modal
     else
       edit_or_new_button.on(:click) { mutate.open true }
     end
+  end
+
+  def render_modal
+    Sem.Modal(open: state.open) {
+      Sem.ModalHeader {
+        params.heart.name.nil? || params.heart.name.length == 0 ? "New Heart Card" : params.heart.name
+      }
+      Sem.ModalContent {
+        content
+      }
+      Sem.ModalActions {
+        actions
+      }
+    }
   end
 
   def edit_or_new_button
@@ -51,11 +55,6 @@ class HeartModal < Hyperloop::Component
     Sem.Button { "Cancel" }.on(:click) { cancel }
   end
 
-  def cancel
-    params.heart.revert
-    mutate.open false
-  end
-
   def save
     params.heart.save.then do |result|
       if result[:success]
@@ -65,5 +64,11 @@ class HeartModal < Hyperloop::Component
       end
     end
   end
+
+  def cancel
+    params.heart.revert
+    mutate.open false
+  end
+
 
 end

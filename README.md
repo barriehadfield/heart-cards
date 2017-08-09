@@ -65,16 +65,6 @@ And you should be rewarded with a running application, but if it is not working,
 
 ## Code
 
-### Where are the Controllers and Views?
-
-There are none, we have replaced all of these parts of the Rails stack with Isomorphic Hyperloop code. If you have a look at `routes.rb` you will see that we have an automagical route `root 'hyperloop#AppRouter'` which Hyperloop uses to render our root Component `AppRouter`.
-
-There are other ways to work with Hyperloop, you could have had a traditional Controller and View and launched the root Hyperloop Component either from the Controller or from within a View, but for now, we just don't need all that.
-
-While we are looking at `routes.rb` pay attention to this line at the end of the file. It's important that it remains at the end of the file as this is our catch all route `match '*all', to: 'hyperloop#AppRouter', via: [:get]`
-
-That last line tells our Rails server to route all requests to our Hyperloop Component so we can deal with them there. We will discuss SPA (single page application) routing later.
-
 ### The AppRouter Component
 
 The first Component we launch is the Router. Its job is to read the incoming route and render the appropriate Component. Simple as that! We have SPA using React Router to route incoming requests in just a few lines of Ruby code.
@@ -198,11 +188,21 @@ Finally notice how the JSX paramaters `inverted color='blue' size='huge'` become
 
 The information in this chapter should equip you with most of what you need to work with any JavaScript or React library. The only things we have not discussed is how to create and pass a React object to another object and how to handle JavaScript callbacks. We will address both these topics later in this tutorial.
 
-## The HeartModal Component
+### Where are the Controllers and Views?
+
+You might be wondering where the controllers and views are for our application. There are none, we have replaced all of these parts of the Rails stack with Isomorphic Hyperloop code. If you have a look at `routes.rb` you will see that we have an automagical route `root 'hyperloop#AppRouter'` which Hyperloop uses to render our root Component `AppRouter`.
+
+There are other ways to work with Hyperloop, you could have had a traditional Controller and View and launched the root Hyperloop Component either from the Controller or from within a View, but for now, we just don't need all that.
+
+While we are looking at `routes.rb` pay attention to this line at the end of the file. It's important that it remains at the end of the file as this is our catch all route `match '*all', to: 'hyperloop#AppRouter', via: [:get]`
+
+That last line tells our Rails server to route all requests to our Hyperloop Component so we can deal with them there. We will discuss SPA (single page application) routing later.
+
+### The HeartModal Component
 
 `HeartModal` is a self-contained, DRY, multi-functional component. It renders itself as  Button (in an Edit or New state) and then morphs into a Modal when clicked. It handles editing or creating of Heart objects and it achieves all of that in roughly 50 lines of code.  
 
-+ **Multi-functional** - It handles editing or creating of `Heart` objects using the same rendering code and even knows if it should render as a `Button` or as a `Modal`
++ **Multi-functional** - this Component handles editing or creating of `Heart` objects using the same rendering code and when the Modal is not open, the Component knows if it should render as a New or Edit `Button` (or as a `Modal` if it opened).
 + **Self-contained** - all of the functionality is contained within the Component, we do not need to worry about its rendering state (Button or Modal) or even if the Modal should be shown or hidden. There are also no call-backs to worry about.
 + **DRY** - It uses the same Components as the `Card` Component to render the `Heart` object data. The rendering is slightly different, so it does depart in part but were there is no need for difference the code is completely DRY.
 
@@ -220,9 +220,111 @@ And then again in the `Card` Component we use it again:
 HeartModal(heart: params.heart, mode: :edit)
 ```
 
-I am sure we could simplify the interface and just pass the `Heart` object we would like to operate on and let the `HeartModal` Component figure out if it is a new or existing object and then render itself as a New or Edit  Button but that would be a little to pithy for my liking. The interface to this Component (passing the `Heart` object we want to operate on, and a `mode` param) makes for clear understandable code.
+We could simplify the interface and just pass the `Heart` object we would like to operate on and let the `HeartModal` Component figure out if it is a new or existing object and then render itself as a New or Edit  Button but that would be a little to pithy for my liking. The interface to this Component (passing the `Heart` object we want to operate on, and a `mode` param) makes for clear understandable code.
 
 #### Implementation
+
+Firstly, lets have a look at the render macro:
+
+```ruby
+render(DIV) do
+  if state.open
+    render_modal
+  else
+    edit_or_new_button.on(:click) { mutate.open true }
+  end
+end
+```
+
+Herein lies the beauty of React. These 7 lines of code tell us everything we need to know about how this Component works. It its internal (reactive) state `open` is true then it will render (and add to the DOM of the page) a Modal, otherwise it will render itself as a Button (either an Edit or New Button) that' if clicked, will mutate the Components `open` state so that it then renders as a Modal.
+
+Our `render_modal` method does exactly what it describes; it renders a Semantic UI Modal and sets the open state of the Modal to the same reactive state `open`. This is key - our reactive state variable `open` does three things - firstly it governs if the Component should present itself as a Button or a Modal, secondly it governs if the Modal CSS is added to the DOM and thirdly it governs if this particular Modal (which is now rendered to the DOM) is visible or not.
+
+There is a subtly yet important point here - the Modal will only be rendered to the DOM if it is to be displayed. This is important as we will be adding many of these `HeartModal` Components to our page (one per `HeartCard` which we will see later) and we do not want them to render unless necessary as the rendering code will be expensive.  
+
+```ruby
+def render_modal
+  Sem.Modal(open: state.open) {
+    Sem.ModalHeader {
+      params.heart.name.nil? || params.heart.name.length == 0 ? "New Heart Card" : params.heart.name
+    }
+    Sem.ModalContent {
+      content
+    }
+    Sem.ModalActions {
+      actions
+    }
+  }
+end
+```
+
+Lets consider the second part of the `render` macro - rendering itself as a Button if the Modal is closed.
+
+```ruby
+edit_or_new_button.on(:click) { mutate.open true }
+```
+
+Herein lies the beauty of Ruby. We render a method `edit_or_new_button` which will return a Button and we add an event handler to whichever Button is returned.
+
+```ruby
+def edit_or_new_button
+  if params.mode == :new
+    Sem.Button(icon: true, labelPosition: 'left', primary: true) {
+      Sem.Icon(name: :heart)
+      "New Heart Card"
+    }
+  else
+    Sem.Button(circular: true, icon: :setting)
+  end
+end
+```
+
+#### Methods or Components
+
+Its worth taking a moment to discuss the choice of using methods in a Component class or creating new Components. One could argue that each of the methods above could be a Component in its own right and if one were following the React coding guidelines where you create ever smaller Components.
+
+My own rule of thumb is to use methods to simplify the code and I create Components whenever I imagine the Component being re-used somewhere else in my code. Often code starts life as a method and turns into a Component.
+
+For example, in this `HeartModal` Component we use methods throughout other than one Component which we render in the body of the Modal `Categories(heart: params.heart, edit: true)`. We will discuss this Component in a later chapter as it has some of its own magic. For now all we need to know is that a Component called `Categories` will be rendered in the body of our Modal (if the Modal itself is rendered).
+
+#### Creating or Saving Heart Objects
+
+You might have noticed that our Modal has two action buttons:
+
+```ruby
+def actions
+  Sem.Button(primary: true) { "Save" }.on(:click) { save } if params.heart.changed?
+  Sem.Button { "Cancel" }.on(:click) { cancel }
+end
+```
+
+Our 'save' action is implemented here:
+
+```ruby
+def save
+  params.heart.save.then do |result|
+    if result[:success]
+      mutate.open false
+    else
+      alert "Unable to save Heart Card"
+    end
+  end
+end
+```
+
+Herein lies the beauty of Hyperloop. The code above is the only code we write to handle the saving or creating of modified Heart objects.
+
+Under the covers Hyperloop does all of the following tasks:
+
++ Serialies our `Heart` object into JSON
++ POSTSs it to the server (expecting a promise to be returned at some time)
++ Saves it to the database (depending on the `current_users` access rights)
++ Uses ActionCable to push a notification to a channel (again, depending on the current_users Policy)
++ De-serilizes the response and updates the client-side Models with any changes
++ Re-renders any Component which is currently displaying data from a modified Model or collection of Models
++ Executes the code which was waiting for the promise to be returned, which in this case changes the state of the Modal to not be shown or alerts an error
+
+In a non-isomorphic, single page application (most likely with the frontend in JavaScript and the backend in Ruby) all of the tasks above would have to have been considered and coded by the developer. Howevere, with Hyperloop, the simple fact that Models are shared between the client and server makes all of the above possible and designates those mundane, repetitive, complicated, and fragile tasks to plumbing. 
 
 ...
 todo:
