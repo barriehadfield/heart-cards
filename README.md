@@ -1,14 +1,14 @@
-# Heart Cards
+# Heart Cards Application and Tutorial
 
-## HEART
+## What is HEART?
 
-The Heat Cards application provides, tracks, and manages a (Google inspired) software development HEART process.
+Google invented HEART, which stands for Happiness, Engagement, Adoption, Retention and Task Success.
 
-HEART stands for **H**appiness, **E**ngagement, **A**doption, **R**etention and **T**ask Success.
-
-This process takes a more holistic approach and recognizes the need to gather quantitive as well as qualitative feedback when assessing the success of a software initiative.
+The HEART process takes a more holistic approach and recognizes the need to gather quantitive as well as qualitative feedback when assessing the success of a software initiative.
 
 You can read more about HEART here: https://www.interaction-design.org/literature/article/google-s-heart-framework-for-measuring-ux
+
+This Heat Cards application provides, tracks, and manages a software development HEART process.
 
 If you are on a journey of continuous improvement, HEART can help you stay true to a build-measure-learn software development lifecycle and can unite designers, developers, product managers, and testers.
 
@@ -19,7 +19,7 @@ The goal of this tutorial is to provide a fully featured Hyperloop application w
 This tutorial assumes a working knowledge of Rails and Hyperloop and does not go into any setup. If you are just starting with Hyperloop then there are better tutorial to start with, specifically the [Hello World tutorial](http://ruby-hyperloop.io/tutorials/hyperlooprails/helloworld/) on the [Hyperloop website](http://ruby-hyperloop.io/) or the most excellent [ToDo  tutorial](https://github.com/ruby-hyperloop/todo-tutorial) which takes you through a step by step process of building a Hyperloop application in just 87 lines of code.
 
 
-## Technology
+## Technology covered
 
 This Isomorphic application is a showcase for Hyperloop's COMPS architecture, all written in beautiful Ruby. The goal of publishing this application is to show how all these technologies work together in a live application.
 
@@ -63,7 +63,7 @@ Navigate to:
 
 And you should be rewarded with a running application, but if it is not working, then there is something not right in the setup. If you cannot resolve this, then please reach out to us in the Gitter Hyperloop room: https://gitter.im/ruby-hyperloop/chat and we will be happy to help you.
 
-## Code
+## Single Page Application Routing
 
 ### The AppRouter Component
 
@@ -86,6 +86,18 @@ end
 ```
 
 As you can see from the code above, there are just two routes in this application. `/` which will render a Component called `Home` and `/members` which will render a Component called `Members`. As our routing needs in this application are so simple, we will not go into routing further, but you can learn more about this Hyper Router here: https://github.com/ruby-hyperloop/hyper-router
+
+### Where are the Controllers and Views?
+
+You might be wondering where the controllers and views are for our application. There are none, we have replaced all of these parts of the Rails stack with Isomorphic Hyperloop code. If you have a look at `routes.rb` you will see that we have an automagical route `root 'hyperloop#AppRouter'` which Hyperloop uses to render our root Component `AppRouter`.
+
+There are other ways to work with Hyperloop, you could have had a traditional Controller and View and launched the root Hyperloop Component either from the Controller or from within a View, but for now, we just don't need all that.
+
+While we are looking at `routes.rb` pay attention to this line at the end of the file. It's important that it remains at the end of the file as this is our catch all route `match '*all', to: 'hyperloop#AppRouter', via: [:get]`
+
+That last line tells our Rails server to route all requests to our Hyperloop Component so we can deal with them there. We will discuss SPA (single page application) routing later.
+
+## Reactive Components
 
 ### The Home Component
 
@@ -188,15 +200,7 @@ Finally notice how the JSX paramaters `inverted color='blue' size='huge'` become
 
 The information in this chapter should equip you with most of what you need to work with any JavaScript or React library. The only things we have not discussed is how to create and pass a React object to another object and how to handle JavaScript callbacks. We will address both these topics later in this tutorial.
 
-### Where are the Controllers and Views?
-
-You might be wondering where the controllers and views are for our application. There are none, we have replaced all of these parts of the Rails stack with Isomorphic Hyperloop code. If you have a look at `routes.rb` you will see that we have an automagical route `root 'hyperloop#AppRouter'` which Hyperloop uses to render our root Component `AppRouter`.
-
-There are other ways to work with Hyperloop, you could have had a traditional Controller and View and launched the root Hyperloop Component either from the Controller or from within a View, but for now, we just don't need all that.
-
-While we are looking at `routes.rb` pay attention to this line at the end of the file. It's important that it remains at the end of the file as this is our catch all route `match '*all', to: 'hyperloop#AppRouter', via: [:get]`
-
-That last line tells our Rails server to route all requests to our Hyperloop Component so we can deal with them there. We will discuss SPA (single page application) routing later.
+## Models and Modals
 
 ### The HeartModal Component
 
@@ -206,7 +210,7 @@ That last line tells our Rails server to route all requests to our Hyperloop Com
 + **Self-contained** - all of the functionality is contained within the Component, we do not need to worry about its rendering state (Button or Modal) or even if the Modal should be shown or hidden. There are also no call-backs to worry about.
 + **DRY** - It uses the same Components as the `Card` Component to render the `Heart` object data. The rendering is slightly different, so it does depart in part but were there is no need for difference the code is completely DRY.
 
-#### Interface
+### Interface
 
 In our `Home` Component code, you will notice that we invoke the `HeartModal` Component passing in an empty `Heart` object and a `mode` param.
 
@@ -222,7 +226,7 @@ HeartModal(heart: params.heart, mode: :edit)
 
 We could simplify the interface and just pass the `Heart` object we would like to operate on and let the `HeartModal` Component figure out if it is a new or existing object and then render itself as a New or Edit  Button but that would be a little to pithy for my liking. The interface to this Component (passing the `Heart` object we want to operate on, and a `mode` param) makes for clear understandable code.
 
-#### Implementation
+### Implementation
 
 Firstly, lets have a look at the render macro:
 
@@ -279,7 +283,7 @@ def edit_or_new_button
 end
 ```
 
-#### Methods or Components
+### Methods or Components
 
 Its worth taking a moment to discuss the choice of using methods in a Component class or creating new Components. One could argue that each of the methods above could be a Component in its own right and if one were following the React coding guidelines where you create ever smaller Components.
 
@@ -287,7 +291,7 @@ My own rule of thumb is to use methods to simplify the code and I create Compone
 
 For example, in this `HeartModal` Component we use methods throughout other than one Component which we render in the body of the Modal `Categories(heart: params.heart, edit: true)`. We will discuss this Component in a later chapter as it has some of its own magic. For now all we need to know is that a Component called `Categories` will be rendered in the body of our Modal (if the Modal itself is rendered).
 
-#### Creating or Saving Heart Objects
+### Creating and Updating Heart Objects
 
 You might have noticed that our Modal has two action buttons:
 
@@ -324,7 +328,7 @@ Under the covers Hyperloop does all of the following tasks:
 + Re-renders any Component which is currently displaying data from a modified Model or collection of Models
 + Executes the code which was waiting for the promise to be returned, which in this case changes the state of the Modal to not be shown or alerts an error
 
-In a non-isomorphic, single page application (most likely with the frontend in JavaScript and the backend in Ruby) all of the tasks above would have to have been considered and coded by the developer. Howevere, with Hyperloop, the simple fact that Models are shared between the client and server makes all of the above possible and designates those mundane, repetitive, complicated, and fragile tasks to plumbing. 
+In a non-isomorphic, single page application (most likely with the frontend in JavaScript and the backend in Ruby) all of the tasks above would have to have been considered and coded by the developer. Howevere, with Hyperloop, the simple fact that Models are shared between the client and server makes all of the above possible and designates those mundane, repetitive, complicated, and fragile tasks to plumbing.
 
 ...
 todo:
