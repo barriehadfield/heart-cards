@@ -11,7 +11,7 @@ class Categories < Hyperloop::Component
       { category: :task, name: "Task Success", description: "Efficiency, effectiveness, and error rate" }
     ].each do |cat|
       Category(category: cat[:category], name: cat[:name], description: cat[:description],
-        edit_mode: param.edit_mode, heart: params.heart)
+        edit_mode: params.edit_mode, heart: params.heart)
     end
   end
 end
