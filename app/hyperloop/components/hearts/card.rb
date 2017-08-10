@@ -24,7 +24,7 @@ class HeartCard < Hyperloop::Component
           P { params.heart.name }
           BR()
         }
-        Sem.GridColumn(width: 1) { HeartModal(heart: params.heart, mode: :edit) } if state.show_settings
+        Sem.GridColumn(width: 1) { HeartModal(heart: params.heart, mode: :edit) } # if state.show_settings
       }
     }
   end

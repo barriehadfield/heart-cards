@@ -3,7 +3,6 @@ class Category < Hyperloop::Component
   param :category
   param :name
   param :description
-  param :edit
   param :heart
   param :edit_mode
 

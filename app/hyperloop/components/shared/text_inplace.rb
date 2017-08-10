@@ -9,7 +9,7 @@ class TextInplace < Hyperloop::Component
   render do
    if params.edit_mode
      Sem.TextArea(value: params.model[params.field.to_s].to_s, label: params.label,
-     placeholder: params.placeholder.to_s, autoHeight: true, fluid: true)
+     placeholder: params.placeholder.to_s, autoHeight: true)
      .on(:change) do |e|
        params.model[params.field.to_s] = e.target.value
      end
