@@ -1,7 +1,7 @@
 class Categories < Hyperloop::Component
 
   param :heart
-  param :edit
+  param :edit_mode
 
   render(DIV) do
     [ { category: :happiness, name: "Happiness", description: "Measures of user's attitudes" },
@@ -11,7 +11,7 @@ class Categories < Hyperloop::Component
       { category: :task, name: "Task Success", description: "Efficiency, effectiveness, and error rate" }
     ].each do |cat|
       Category(category: cat[:category], name: cat[:name], description: cat[:description],
-        edit: param.edit, heart: params.heart)
+        edit_mode: param.edit_mode, heart: params.heart)
     end
   end
 end
