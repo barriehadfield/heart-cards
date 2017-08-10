@@ -2,22 +2,24 @@
 
 ## What is HEART?
 
-Google invented HEART, which stands for Happiness, Engagement, Adoption, Retention and Task Success.
+Google invented the HEART process, which stands for Happiness, Engagement, Adoption, Retention and Task Success.
 
 The HEART process takes a more holistic approach and recognizes the need to gather quantitive as well as qualitative feedback when assessing the success of a software initiative.
 
 You can read more about HEART here: https://www.interaction-design.org/literature/article/google-s-heart-framework-for-measuring-ux
 
-This Heat Cards application provides, tracks, and manages a software development HEART process.
-
 If you are on a journey of continuous improvement, HEART can help you stay true to a build-measure-learn software development lifecycle and can unite designers, developers, product managers, and testers.
+
+
+## The Heart Cards Application
+
+This *Heat Cards* application provides a digital platform to track and manage a HEART process.
+
+*Heart Cards* is also a fully featured Hyperloop application which demonstrates all aspects of the Hyperloop Isomorphic COMPS architecture.
 
 ## This tutorial
 
-The goal of this tutorial is to provide a fully featured Hyperloop application which demonstrates all aspects of the Hyperloop Isomorphic COMPS architecture with Rails.
-
 This tutorial assumes a working knowledge of Rails and Hyperloop and does not go into any setup. If you are just starting with Hyperloop then there are better tutorial to start with, specifically the [Hello World tutorial](http://ruby-hyperloop.io/tutorials/hyperlooprails/helloworld/) on the [Hyperloop website](http://ruby-hyperloop.io/) or the most excellent [ToDo  tutorial](https://github.com/ruby-hyperloop/todo-tutorial) which takes you through a step by step process of building a Hyperloop application in just 87 lines of code.
-
 
 ## Technology covered
 
@@ -240,7 +242,9 @@ render(DIV) do
 end
 ```
 
-Herein lies the beauty of React. These 7 lines of code tell us everything we need to know about how this Component works. It its internal (reactive) state `open` is true then it will render (and add to the DOM of the page) a Modal, otherwise it will render itself as a Button (either an Edit or New Button) that' if clicked, will mutate the Components `open` state so that it then renders as a Modal.
+Herein lies the beauty of React. These 7 lines of code tell us everything we need to know about how this Component works:
+
+If its internal (reactive) state `open` is true then it will render (and add to the DOM of the page) a Modal, otherwise it will render itself as a Button (either an Edit or New Button) that' if clicked, will mutate its `open` state so that it then renders as a Modal.
 
 Our `render_modal` method does exactly what it describes; it renders a Semantic UI Modal and sets the open state of the Modal to the same reactive state `open`. This is key - our reactive state variable `open` does three things - firstly it governs if the Component should present itself as a Button or a Modal, secondly it governs if the Modal CSS is added to the DOM and thirdly it governs if this particular Modal (which is now rendered to the DOM) is visible or not.
 
