@@ -1,3 +1,9 @@
+<p align="center">
+	<a href="http://ruby-hyperloop.io/" alt="Hyperloop" title="Hyperloop">
+		<img src="https://raw.githubusercontent.com/ruby-hyperloop/ruby-hyperloop.io/source/source/images/hyperloop-logo-small-pink.png">
+	</a>
+</p>
+
 # Heart Cards Application and Tutorial
 
 ## What is HEART?
@@ -205,6 +211,8 @@ The information in this chapter should equip you with most of what you need to w
 ## Models and Modals
 
 ### The HeartModal Component
+
+![](/public/images/modal.png)
 
 `HeartModal` is a self-contained, DRY, multi-functional component. It renders itself as  Button (in an Edit or New state) and then morphs into a Modal when clicked. It handles editing or creating of Heart objects and it achieves all of that in roughly 50 lines of code.  
 
