@@ -1,4 +1,4 @@
-class InputInplace < Hyperloop::Component
+class TextInplace < Hyperloop::Component
 
   param :field
   param :model
@@ -6,12 +6,10 @@ class InputInplace < Hyperloop::Component
   param :placeholder
   param :label
 
-  # param args: {}
-
   render do
    if params.edit_mode
-     INPUT(value: params.model[params.field.to_s].to_s, label: params.label,
-     placeholder: params.placeholder.to_s)
+     Sem.TextArea(value: params.model[params.field.to_s].to_s, label: params.label,
+     placeholder: params.placeholder.to_s, autoHeight: true, fluid: true)
      .on(:change) do |e|
        params.model[params.field.to_s] = e.target.value
      end
