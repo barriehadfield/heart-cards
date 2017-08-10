@@ -3,10 +3,6 @@ class HeartModal < Hyperloop::Component
   param :heart
   param :mode
 
-  before_mount do
-    mutate.open false
-  end
-
   render(DIV) do
     if state.open
       render_modal
