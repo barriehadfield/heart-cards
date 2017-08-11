@@ -9,14 +9,24 @@ class Category < Hyperloop::Component
   render(DIV) do
     Sem.Grid {
       Sem.GridRow {
-        Sem.GridColumn { check_box }
+        Sem.GridColumn {
+          params.edit_mode ? check_box : heading
+        }
       }
       Sem.GridRow {
         Sem.GridColumn {
-          category_fields
+          if params.edit_mode
+            category_fields
+          else
+            category_tabs
+          end
          }
       } if params.heart["#{params.category}_bool"]
     }
+  end
+
+  def heading
+    H4 { params.name } if params.heart["#{params.category}_bool"]
   end
 
   def check_box
@@ -25,6 +35,22 @@ class Category < Hyperloop::Component
     ).on(:change) {
       params.heart["#{params.category}_bool"] = !params.heart["#{params.category}_bool"]
     }
+  end
+
+  def category_tabs
+    # this is wotking with no errors
+    # pane = Sem.TabPane(attached: false) { "I am a pain" }.as_node
+    # panes = [ {menuItem: 'tab 1', render: -> { pane.to_n }  } ]
+    # Sem.Tab(menu: {secondary: true, pointing: true }.to_n, panes: panes.to_n )
+
+    pane_a = Sem.TabPane { P {params.heart.happiness_goals} }.as_node
+    pane_b = Sem.TabPane { "I am the next pain" }.as_node
+    panes = [ {menuItem: 'Goals', render: -> { pane_a.to_n }},
+              {menuItem: 'Signals', render: -> { pane_b.to_n }}
+    ]
+    Sem.Tab(panes: panes.to_n )
+
+
   end
 
   def category_fields

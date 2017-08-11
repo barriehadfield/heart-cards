@@ -10,7 +10,7 @@ class HeartCard < Hyperloop::Component
     Sem.Card(fluid: true) {
       Sem.CardContent {
         Sem.CardHeader { header }
-        Sem.CardContent { "and the content here and some more here coming soon" }
+        Sem.CardContent { content }
       }
     }
     .on(:mouse_enter) { mutate.show_settings true }
@@ -27,6 +27,10 @@ class HeartCard < Hyperloop::Component
         Sem.GridColumn(width: 1) { HeartModal(heart: params.heart, mode: :edit) } if state.show_settings
       }
     }
+  end
+
+  def content
+    Categories(heart: params.heart, edit_mode: false)
   end
 
 end

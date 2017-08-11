@@ -6,7 +6,7 @@ class TextInplace < Hyperloop::Component
   param :placeholder
   param :label
 
-  render do
+  render(DIV) do
    if params.edit_mode
      Sem.TextArea(value: params.model[params.field.to_s].to_s, label: params.label,
      placeholder: params.placeholder.to_s, autoHeight: true)
@@ -14,7 +14,9 @@ class TextInplace < Hyperloop::Component
        params.model[params.field.to_s] = e.target.value
      end
    else
-     H1 { params.model.send(params.field) } if params.model.send(params.field)
+    #  H1 { "heading" }
+    #  P { params.model.send(params.field) } if params.model.send(params.field)
+    puts "not implemented"
    end
  end
 
