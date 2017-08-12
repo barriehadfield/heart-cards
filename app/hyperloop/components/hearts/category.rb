@@ -50,7 +50,20 @@ class Category < Hyperloop::Component
     ]
     Sem.Tab(panes: panes.to_n )
 
+    options = [
+      { value: 'one', label: 'One' },
+      { value: 'two', label: 'Two' }
+    ]
+    ReactSelect( name: "form-field-name", value: "one", options: options.to_n, onChange: lambda do |val| log_change(val) end)
+    # end
+  end
 
+  def log_change
+    alert "changes here"
+  end
+
+  def change
+    alert "change"
   end
 
   def category_fields

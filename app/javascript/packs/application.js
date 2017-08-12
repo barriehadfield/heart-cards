@@ -7,16 +7,4 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-ReactDOM = require('react-dom');
-React = require('react');
-
-ReactRouter = require('react-router');
-ReactRouterDOM = require('react-router-dom');
-History = require('history');
-
-// MuiThemeProvider = require('material-ui/styles');
-// Mui = require('material-ui');
-
-Sem = require('semantic-ui-react');
-
 console.log('Hello World from Webpacker')
