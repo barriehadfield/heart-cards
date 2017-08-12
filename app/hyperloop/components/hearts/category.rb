@@ -26,7 +26,7 @@ class Category < Hyperloop::Component
   end
 
   def heading
-    H4 { params.name } if params.heart["#{params.category}_bool"]
+    Sem.Header(as: :h2, color: :blue) { params.name } if params.heart["#{params.category}_bool"]
   end
 
   def check_box
@@ -54,8 +54,6 @@ class Category < Hyperloop::Component
       { value: 'one', label: 'One' },
       { value: 'two', label: 'Two' }
     ]
-    ReactSelect( name: "form-field-name", value: "one", options: options.to_n, onChange: lambda do |val| log_change(val) end)
-    # end
   end
 
   def log_change
@@ -67,19 +65,19 @@ class Category < Hyperloop::Component
   end
 
   def category_fields
-    P { "Goals" }
+    Sem.Header(color: :blue) { "Goals" }
     Sem.Form {
       TextInplace(field: "#{params.category}_goals", model: params.heart, label: "Goals",
         placeholder: "What are you trying to achieve?", edit_mode: params.edit_mode)
     }
     BR()
-    P { "Signals" }
+    Sem.Header(color: :blue) { "Signals" }
     Sem.Form {
       TextInplace(field: "#{params.category}_signals", model: params.heart, label: "Signals",
         placeholder: "What signals do you expect to see?", edit_mode: params.edit_mode)
     }
     BR()
-    P { "Metrics" }
+    Sem.Header(color: :blue) { "Metrics" }
     Sem.Form {
       TextInplace(field: "#{params.category}_metrics", model: params.heart, label: "Metrics",
         placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
