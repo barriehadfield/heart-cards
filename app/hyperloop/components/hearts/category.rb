@@ -15,11 +15,7 @@ class Category < Hyperloop::Component
       }
       Sem.GridRow {
         Sem.GridColumn {
-          if params.edit_mode
-            category_fields
-          else
-            category_tabs
-          end
+          category_tabs
           Sem.Divider(hidden: true)
          }
       }
@@ -50,9 +46,21 @@ class Category < Hyperloop::Component
   end
 
   def category_tabs
-    goals   = Sem.TabPane(attached: true) { params.heart.send("#{params.category}_goals")   }.as_node
-    signals = Sem.TabPane(attached: true) { params.heart.send("#{params.category}_signals") }.as_node
-    metrics = Sem.TabPane(attached: true) { params.heart.send("#{params.category}_metrics") }.as_node
+    goals = Sem.TabPane(attached: true) {
+      TextInplace(field: "#{params.category}_goals", model: params.heart,
+      placeholder: "What are you trying to achieve?", edit_mode: params.edit_mode)
+    }.as_node
+
+    signals = Sem.TabPane(attached: true) {
+      TextInplace(field: "#{params.category}_signals", model: params.heart,
+      placeholder: "What signals do you expect to see?", edit_mode: params.edit_mode)
+    }.as_node
+
+    metrics = Sem.TabPane(attached: true) {
+      TextInplace(field: "#{params.category}_metrics", model: params.heart,
+      placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
+    }.as_node
+
     panes = [ {menuItem: 'Goals',   render: -> { goals.to_n }},
               {menuItem: 'Signals', render: -> { signals.to_n }},
               {menuItem: 'Metrics', render: -> { metrics.to_n }}
@@ -60,25 +68,5 @@ class Category < Hyperloop::Component
     menu = { secondary: false, pointing: true }
     Sem.Tab(menu: menu.to_n, panes: panes.to_n )
   end
-
-  def category_fields
-    Sem.Header(as: :h3) { "Goals" }
-    Sem.Form {
-      TextInplace(field: "#{params.category}_goals", model: params.heart, label: "Goals",
-        placeholder: "What are you trying to achieve?", edit_mode: params.edit_mode)
-    }
-    BR()
-    Sem.Header(as: :h3) { "Signals" }
-    Sem.Form {
-      TextInplace(field: "#{params.category}_signals", model: params.heart, label: "Signals",
-        placeholder: "What signals do you expect to see?", edit_mode: params.edit_mode)
-    }
-    BR()
-    Sem.Header(as: :h3) { "Metrics" }
-    Sem.Form {
-      TextInplace(field: "#{params.category}_metrics", model: params.heart, label: "Metrics",
-        placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
-    }
-  end
-
+  
 end
