@@ -68,7 +68,7 @@ class Category < Hyperloop::Component
               {menuItem: 'Signals', render: -> { signals.to_n }},
               {menuItem: 'Metrics', render: -> { metrics.to_n }}
     ]
-    menu = { secondary: false, pointing: true }
+    menu = { secondary: true, pointing: true }
     Sem.Tab(menu: menu.to_n, panes: panes.to_n )
   end
 
