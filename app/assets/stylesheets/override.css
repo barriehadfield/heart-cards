@@ -9,14 +9,6 @@ body {
   padding-left: 25px;
 }
 
-.navlink {
-    /*color: blue;*/
-    text-decoration: none;
-}
-.active {
-  font-weight: bold;
-}
-
 /*a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
