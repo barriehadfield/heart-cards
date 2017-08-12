@@ -12,14 +12,14 @@ class Category < Hyperloop::Component
         Sem.GridColumn {
           params.edit_mode ? check_box : heading
         }
-      }
+      } if params.heart["#{params.category}_bool"] || params.edit_mode
       Sem.GridRow {
         Sem.GridColumn {
           category_tabs
           Sem.Divider(hidden: true)
          }
-      } if params.heart["#{params.category}_bool"] 
-    }
+      } if params.heart["#{params.category}_bool"]
+    } if params.heart["#{params.category}_bool"] || params.edit_mode
   end
 
   def heading

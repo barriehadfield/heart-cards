@@ -26,7 +26,7 @@ class HeartCard < Hyperloop::Component
             Sem.Icon(name: :heart, color: :blue)
             Sem.HeaderContent {
               SPAN { " #{params.heart.name}" }
-              Sem.HeaderSubheader { "Updated 2 days ago" }
+              Sem.HeaderSubheader { "Updated 2 days ago by Sam Morgan" }
             }
           }
         }
