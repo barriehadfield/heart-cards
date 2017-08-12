@@ -25,21 +25,24 @@ class Category < Hyperloop::Component
   def heading
     Sem.Header(as: :h2, color: :blue) {
       SPAN { params.name }
-      Sem.HeaderSubheader { params.description }
-      } if params.heart["#{params.category}_bool"]
+      # Sem.HeaderSubheader { params.description }
+    } if params.heart["#{params.category}_bool"]
   end
 
   def check_box
     Sem.Grid {
-      Sem.GridRow {
-        Sem.GridColumn {
+      Sem.GridRow(columns: 2) {
+        Sem.GridColumn(width: 1) {
           Sem.Checkbox(toggle: true, checked: (params.heart["#{params.category}_bool"] ? true : false )
           ).on(:change) {
             params.heart["#{params.category}_bool"] = !params.heart["#{params.category}_bool"]
           }
         }
-        Sem.GridColumn {
-          Sem.Header(as: :h3, color: :blue) { " #{params.name}" }
+        Sem.GridColumn(width: 15) {
+          Sem.Header(as: :h2, color: :blue) {
+            SPAN { params.name }
+            Sem.HeaderSubheader { params.description }
+          }
         }
       }
     }
