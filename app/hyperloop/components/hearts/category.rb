@@ -18,8 +18,8 @@ class Category < Hyperloop::Component
           category_tabs
           Sem.Divider(hidden: true)
          }
-      }
-    } if params.heart["#{params.category}_bool"]
+      } if params.heart["#{params.category}_bool"] 
+    }
   end
 
   def heading
@@ -68,5 +68,5 @@ class Category < Hyperloop::Component
     menu = { secondary: false, pointing: true }
     Sem.Tab(menu: menu.to_n, panes: panes.to_n )
   end
-  
+
 end
