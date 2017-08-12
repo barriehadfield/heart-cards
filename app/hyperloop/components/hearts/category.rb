@@ -20,9 +20,10 @@ class Category < Hyperloop::Component
           else
             category_tabs
           end
+          Sem.Divider(hidden: true)
          }
-      } if params.heart["#{params.category}_bool"]
-    }
+      }
+    } if params.heart["#{params.category}_bool"]
   end
 
   def heading
@@ -49,14 +50,15 @@ class Category < Hyperloop::Component
   end
 
   def category_tabs
-    goals   = Sem.TabPane { params.heart.send("#{params.category}_goals")   }.as_node
-    signals = Sem.TabPane { params.heart.send("#{params.category}_signals") }.as_node
-    metrics = Sem.TabPane { params.heart.send("#{params.category}_metrics") }.as_node
+    goals   = Sem.TabPane(attached: true) { params.heart.send("#{params.category}_goals")   }.as_node
+    signals = Sem.TabPane(attached: true) { params.heart.send("#{params.category}_signals") }.as_node
+    metrics = Sem.TabPane(attached: true) { params.heart.send("#{params.category}_metrics") }.as_node
     panes = [ {menuItem: 'Goals',   render: -> { goals.to_n }},
               {menuItem: 'Signals', render: -> { signals.to_n }},
               {menuItem: 'Metrics', render: -> { metrics.to_n }}
     ]
-    Sem.Tab(panes: panes.to_n )
+    menu = { secondary: false, pointing: true }
+    Sem.Tab(menu: menu.to_n, panes: panes.to_n )
   end
 
   def category_fields
