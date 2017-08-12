@@ -21,8 +21,10 @@ require 'reactrb/auto-import'
 # require 'hyper-router/react-router-source'
 require 'hyper-router'
 
-require 'opal_hot_reloader'
-OpalHotReloader.listen
+# unless Rails.env.production?
+  require 'opal_hot_reloader'
+  OpalHotReloader.listen
+# end
 
 require_tree './models' if RUBY_ENGINE == 'opal'
 require_tree './components'
