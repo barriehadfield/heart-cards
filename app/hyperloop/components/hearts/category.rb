@@ -26,58 +26,53 @@ class Category < Hyperloop::Component
   end
 
   def heading
-    Sem.Header(as: :h2, color: :blue) { params.name } if params.heart["#{params.category}_bool"]
+    Sem.Header(as: :h2, color: :blue) {
+      SPAN { params.name }
+      Sem.HeaderSubheader { params.description }
+      } if params.heart["#{params.category}_bool"]
   end
 
   def check_box
-    Sem.Checkbox(toggle: true, label: params.name,
-      checked: (params.heart["#{params.category}_bool"] ? true : false )
-    ).on(:change) {
-      params.heart["#{params.category}_bool"] = !params.heart["#{params.category}_bool"]
+    Sem.Grid {
+      Sem.GridRow {
+        Sem.GridColumn {
+          Sem.Checkbox(toggle: true, checked: (params.heart["#{params.category}_bool"] ? true : false )
+          ).on(:change) {
+            params.heart["#{params.category}_bool"] = !params.heart["#{params.category}_bool"]
+          }
+        }
+        Sem.GridColumn {
+          Sem.Header(as: :h3, color: :blue) { " #{params.name}" }
+        }
+      }
     }
   end
 
   def category_tabs
-    # this is wotking with no errors
-    # pane = Sem.TabPane(attached: false) { "I am a pain" }.as_node
-    # panes = [ {menuItem: 'tab 1', render: -> { pane.to_n }  } ]
-    # Sem.Tab(menu: {secondary: true, pointing: true }.to_n, panes: panes.to_n )
-
-    pane_a = Sem.TabPane { P {params.heart.happiness_goals} }.as_node
-    pane_b = Sem.TabPane { "I am the next pain" }.as_node
-    panes = [ {menuItem: 'Goals', render: -> { pane_a.to_n }},
-              {menuItem: 'Signals', render: -> { pane_b.to_n }}
+    goals   = Sem.TabPane { params.heart.send("#{params.category}_goals")   }.as_node
+    signals = Sem.TabPane { params.heart.send("#{params.category}_signals") }.as_node
+    metrics = Sem.TabPane { params.heart.send("#{params.category}_metrics") }.as_node
+    panes = [ {menuItem: 'Goals',   render: -> { goals.to_n }},
+              {menuItem: 'Signals', render: -> { signals.to_n }},
+              {menuItem: 'Metrics', render: -> { metrics.to_n }}
     ]
     Sem.Tab(panes: panes.to_n )
-
-    options = [
-      { value: 'one', label: 'One' },
-      { value: 'two', label: 'Two' }
-    ]
-  end
-
-  def log_change
-    alert "changes here"
-  end
-
-  def change
-    alert "change"
   end
 
   def category_fields
-    Sem.Header(color: :blue) { "Goals" }
+    Sem.Header(as: :h3) { "Goals" }
     Sem.Form {
       TextInplace(field: "#{params.category}_goals", model: params.heart, label: "Goals",
         placeholder: "What are you trying to achieve?", edit_mode: params.edit_mode)
     }
     BR()
-    Sem.Header(color: :blue) { "Signals" }
+    Sem.Header(as: :h3) { "Signals" }
     Sem.Form {
       TextInplace(field: "#{params.category}_signals", model: params.heart, label: "Signals",
         placeholder: "What signals do you expect to see?", edit_mode: params.edit_mode)
     }
     BR()
-    Sem.Header(color: :blue) { "Metrics" }
+    Sem.Header(as: :h3) { "Metrics" }
     Sem.Form {
       TextInplace(field: "#{params.category}_metrics", model: params.heart, label: "Metrics",
         placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
