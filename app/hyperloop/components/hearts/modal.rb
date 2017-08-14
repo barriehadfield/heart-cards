@@ -57,8 +57,7 @@ class HeartModal < Hyperloop::Component
   end
 
   def save
-    SaveHeartOp.run(heart: params.heart)
-    .then do |result|
+    SaveHeartOp.run(heart: params.heart).then do |result|
       if result[:success]
         mutate.open false
       else
