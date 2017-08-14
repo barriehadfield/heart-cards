@@ -17,8 +17,10 @@ class Category < Hyperloop::Component
         Sem.GridColumn {
           category_tabs
           BR()
-          update_accordion
-          Sem.Divider(hidden: true)
+          unless params.edit_mode
+            update_accordion
+            Sem.Divider(hidden: true)
+          end
          }
       } if params.heart["#{params.category}_bool"]
     } if params.heart["#{params.category}_bool"] || params.edit_mode
