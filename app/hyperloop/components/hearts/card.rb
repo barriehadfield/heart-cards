@@ -29,7 +29,7 @@ class HeartCard < Hyperloop::Component
               Sem.HeaderSubheader {
                 SPAN { "Updated " }
                 TimeAgo(date: params.heart.updated_at)
-                SPAN { " by Sam Morgan" }
+                SPAN { " by #{params.heart.created_by.full_name}" }
               }
             }
           }
@@ -44,7 +44,7 @@ class HeartCard < Hyperloop::Component
   end
 
   def footer
-    SPAN { "Created by Ben Ridgeway " }
+    SPAN { "Created by #{params.heart.created_by.full_name} " }
     TimeAgo(date: params.heart.created_at)
   end
 

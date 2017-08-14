@@ -6,7 +6,21 @@
   <div class="field">
     <div class='ui fluid left icon input'>
       <i aria-hidden="true" class="user icon"></i>
-      <%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+      <%= f.text_field :first_name, autofocus: true, placeholder: 'First name' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class='ui fluid left icon input'>
+      <i aria-hidden="true" class="user icon"></i>
+      <%= f.text_field :last_name, placeholder: 'Last name' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class='ui fluid left icon input'>
+      <i aria-hidden="true" class="user icon"></i>
+      <%= f.email_field :email, placeholder: 'Email' %>
     </div>
   </div>
 
