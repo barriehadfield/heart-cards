@@ -1,6 +1,8 @@
 class Member < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  has_many :created_hearts, foreign_key: :created_by_id
+  has_many :updated_hearts, foreign_key: :updated_by_id
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable unless RUBY_ENGINE == 'opal'
 
