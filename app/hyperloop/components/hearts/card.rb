@@ -26,7 +26,11 @@ class HeartCard < Hyperloop::Component
             Sem.Icon(name: :heart, color: :blue)
             Sem.HeaderContent {
               SPAN { " #{params.heart.name}" }
-              Sem.HeaderSubheader { "Updated 2 days ago by Sam Morgan" }
+              Sem.HeaderSubheader {
+                SPAN { "Updated " }
+                TimeAgo(date: params.heart.updated_at)
+                SPAN { " by Sam Morgan" }
+              }
             }
           }
         }
@@ -40,7 +44,8 @@ class HeartCard < Hyperloop::Component
   end
 
   def footer
-    "Ceated by Ben Ridgeway 10 days ago"
+    SPAN { "Created by Ben Ridgeway " }
+    TimeAgo(date: params.heart.created_at)
   end
 
 end

@@ -76,8 +76,6 @@ class Category < Hyperloop::Component
     menu = { secondary: true, pointing: true }
     Sem.Tab(menu: menu.to_n, panes: panes.to_n )
 
-    ReactTimeAgo(date: Time.now-1.day)
-
   end
 
   def update_accordion
