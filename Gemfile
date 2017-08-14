@@ -37,6 +37,8 @@ gem 'opal_hot_reloader', git: 'https://github.com/fkchang/opal-hot-reloader.git'
 
 gem 'webpacker'
 
+gem 'statesman'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

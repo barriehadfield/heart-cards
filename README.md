@@ -25,15 +25,15 @@ This *Heat Cards* application provides a digital platform to track and manage a 
 
 ## This tutorial
 
-This tutorial assumes a working knowledge of Rails and Hyperloop and does not go into any setup. If you are just starting with Hyperloop then there are better tutorial to start with, specifically the [Hello World tutorial](http://ruby-hyperloop.io/tutorials/hyperlooprails/helloworld/) on the [Hyperloop website](http://ruby-hyperloop.io/) or the most excellent [ToDo  tutorial](https://github.com/ruby-hyperloop/todo-tutorial) which takes you through a step by step process of building a Hyperloop application in just 87 lines of code.
+This tutorial assumes a working knowledge of Rails and Hyperloop. The detailed [Rails Hello World](http://ruby-hyperloop.io/tutorials/hyperlooprails/helloworld/) or [ToDo](https://github.com/ruby-hyperloop/todo-tutorial) tutorials are good precursors if starting out with Hyperloop.
 
 ## Technology covered
 
-This Isomorphic application is a showcase for Hyperloop's COMPS architecture, all written in beautiful Ruby. The goal of publishing this application is to show how all these technologies work together in a live application.
+*Heart Cards* is an Isomorphic Ruby application showcasing Hyperloop's COMPS architecture.
 
-We will be working with the following technologies:
+The following technologies are covered:
 
-+ Hyperloop Isomorphic Components, Operations, Models, Policies and Stores (COMPS for short)
++ Hyperloop Isomorphic Components, Operations, Models, Policies and Stores
 + Hyper-Router which is a DSL wrapping React Router
 + Rails 5.1 with ActionCable for pushing changes between connected clients
 + Opel Hot Reloader for developer bliss with no page reloads while coding
@@ -44,11 +44,11 @@ We will be working with the following technologies:
 
 ## Setup
 
-You will need to install **Ruby**, **Rails 5.1.x**, **Yarn** and **Postgres SQL** first.
+Ensure Ruby, Rails 5.1.x, Yarn and Postgres SQL are installed first.
 
 > Note: This application uses Postgres SQL so that it is deployable to Heroku. If you do not want to use Postgres then you will need to swap it out for MYSQL, but please do not use SQLite as it is not capable of providing the concurrency Hyperloop requires. There are detailed Postgres installation instructions here: https://wiki.postgresql.org/wiki/Detailed_installation_guides
 
-After you have done that run the following sequence of commands from your console:
+Thereafter, run the following console commands:
 
 ```
 git clone https://github.com/barriehadfield/heart-cards.git
@@ -111,7 +111,7 @@ That last line tells our Rails server to route all requests to our Hyperloop Com
 
 The Home Component generates the primary user interface for this application. We will spend a little time going through this line by line as there might be several new concepts here.
 
-> Note on coding style: There are two coding conventions used here which are purely a matter of coding style. You will notice that the HTML elements (`DIV`) are in caps which would indicate a constant. We are using caps as we believe it makes the code easier to read. If you do not like this then `div` will work just as well. Secondly (and perhaps more controversially) you will notice the misuse of `{ }` curly braces extending over more than one line whereas the Ruby norm is to use `do end` blocks if the block extends over more than one line and `{ }` if it just one line. Personally, I like curly braces for Component and HTML element blocks and `do end` for conditional or looping logic. I find this easier to read and work with, but if it hurts your eyes, you can use `do end` instead.
+> **Note on coding style:** There are two coding conventions used here which are purely a matter of coding style. You will notice that the HTML elements (`DIV`) are in caps which would indicate a constant. We are using caps as we believe it makes the code easier to read. If you do not like this then `div` will work just as well. Secondly (and perhaps more controversially) you will notice the misuse of `{ }` curly braces extending over more than one line whereas the Ruby norm is to use `do end` blocks if the block extends over more than one line and `{ }` if it just one line. Personally, I like curly braces for Component and HTML element blocks and `do end` for conditional or looping logic. I find this easier to read and work with, but if it hurts your eyes, you can use `do end` instead.
 
 ```ruby
 # app/hyperloop/components/home.rb
