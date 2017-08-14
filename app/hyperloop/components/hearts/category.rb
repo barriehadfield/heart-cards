@@ -66,9 +66,6 @@ class Category < Hyperloop::Component
       placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
     }.as_node
 
-    # d = DIV { "I am the cheeky one" }.as_node
-    # dd = DIV { "Funky disco" }.as_node
-
     panes = [ {menuItem: 'Goals',   render: -> { goals.to_n }},
               {menuItem: 'Signals', render: -> { signals.to_n }},
               {menuItem: 'Metrics', render: -> { metrics.to_n }}
