@@ -6,7 +6,7 @@ RSpec.describe Update, :type => :model do
   let(:heart) { Heart.new(name: 'I am a test', created_by: member, updated_by: member) }
 
   subject {
-    described_class.new(body: 'I am an update', heart: heart, member: member)
+    described_class.new(body: 'I am an update', heart: heart, member: member, category: :happiness)
   }
 
   it "should be valid with valid data" do
@@ -20,6 +20,11 @@ RSpec.describe Update, :type => :model do
 
   it 'should be invalid without member' do
     subject.member = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'should be invalid without category' do
+    subject.category = nil
     expect(subject).to_not be_valid
   end
 
