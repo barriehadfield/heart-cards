@@ -16,6 +16,8 @@ class Category < Hyperloop::Component
       Sem.GridRow {
         Sem.GridColumn {
           category_tabs
+          BR()
+          update_accordion
           Sem.Divider(hidden: true)
          }
       } if params.heart["#{params.category}_bool"]
@@ -49,20 +51,23 @@ class Category < Hyperloop::Component
   end
 
   def category_tabs
-    goals = Sem.TabPane(attached: true) {
+    goals = DIV {
       TextInplace(field: "#{params.category}_goals", model: params.heart,
       placeholder: "What are you trying to achieve?", edit_mode: params.edit_mode)
     }.as_node
 
-    signals = Sem.TabPane(attached: true) {
+    signals = DIV {
       TextInplace(field: "#{params.category}_signals", model: params.heart,
       placeholder: "What signals do you expect to see?", edit_mode: params.edit_mode)
     }.as_node
 
-    metrics = Sem.TabPane(attached: true) {
+    metrics = DIV {
       TextInplace(field: "#{params.category}_metrics", model: params.heart,
       placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
     }.as_node
+
+    # d = DIV { "I am the cheeky one" }.as_node
+    # dd = DIV { "Funky disco" }.as_node
 
     panes = [ {menuItem: 'Goals',   render: -> { goals.to_n }},
               {menuItem: 'Signals', render: -> { signals.to_n }},
@@ -70,6 +75,19 @@ class Category < Hyperloop::Component
     ]
     menu = { secondary: true, pointing: true }
     Sem.Tab(menu: menu.to_n, panes: panes.to_n )
+
+    ReactTimeAgo(date: Time.now-1.day)
+
+  end
+
+  def update_accordion
+    panels = [
+      { title: "Update from Ben Ridgeway 1 day ago", content: "Good stuff is coming in all the time." },
+      { title: "Update from Ben Ridgeway 5 days ago", content: "Read me next for a good time." }
+    ]
+
+    Sem.Accordion(panels: panels.to_n, styled: true, fluid: true)
+
   end
 
 end
