@@ -57,8 +57,13 @@ class HeartModal < Hyperloop::Component
   end
 
   def save
-    SaveHeartOp.then(heart: params.heart) do
-      mutate.open false
+    SaveHeartOp.run(heart: params.heart)
+    .then do |result|
+      if result[:success]
+        mutate.open false
+      else
+        alert "Unable to save Heart Card"
+      end
     end
   end
 

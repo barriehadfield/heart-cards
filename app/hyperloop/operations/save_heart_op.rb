@@ -3,12 +3,5 @@ class SaveHeartOp < Hyperloop::Operation
 
   step { params.heart.created_by = Member.current if params.heart.new? }
   step { params.heart.updated_by = Member.current }
-  step { save }
-
-  def save
-    params.heart.save.then do |result|
-      alert "Unable to save Heart Card" unless result[:success]
-    end
-  end
-
+  step { params.heart.save.then } # NOTE: The .then chains the promise and returns the result
 end
