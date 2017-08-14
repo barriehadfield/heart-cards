@@ -14,4 +14,14 @@ RSpec.describe Member, :type => :model do
     subject.email = nil
     expect(subject).to_not be_valid
   end
+
+  it 'should be invalid without password' do
+    subject.password = nil
+    expect(subject).to_not be_valid
+  end
+
+  it 'should be invalid with short password' do
+    subject.password = 'test'
+    expect(subject).to_not be_valid
+  end
 end
