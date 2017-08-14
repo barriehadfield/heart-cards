@@ -52,6 +52,9 @@ class HeartModal < Hyperloop::Component
   end
 
   def save
+    params.heart.created_by = Member.current unless params.heart.created_by
+    params.heart.updated_by = Member.current
+
     params.heart.save.then do |result|
       if result[:success]
         mutate.open false

@@ -22,4 +22,10 @@ RSpec.describe Heart, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it "is correctly associated with member" do
+    subject.save
+    expect(member.created_hearts.count).to equal 1
+    expect(member.updated_hearts.count).to equal 1
+  end
+
 end
