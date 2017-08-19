@@ -77,7 +77,7 @@ And you should be rewarded with a running application, but if it is not working,
 
 The first Component we launch is the Router. Its job is to read the incoming route and render the appropriate Component. Simple as that! We have SPA using React Router to route incoming requests in just a few lines of Ruby code.
 
-```ruby
+```ruby runable
 # app/hyperloop/components/shared/app_router.rb
 class AppRouter < Hyperloop::Router
   history :browser
