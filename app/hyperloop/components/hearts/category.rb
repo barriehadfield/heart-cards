@@ -18,7 +18,7 @@ class Category < Hyperloop::Component
           category_tabs
           BR()
           unless params.edit_mode
-            update_accordion
+            Updates(heart: params.heart, category: params.category)
             Sem.Divider(hidden: true)
           end
          }
@@ -74,16 +74,6 @@ class Category < Hyperloop::Component
     ]
     menu = { secondary: true, pointing: true }
     Sem.Tab(menu: menu.to_n, panes: panes.to_n )
-
-  end
-
-  def update_accordion
-    panels = [
-      { title: "Update from Ben Ridgeway 1 day ago", content: "Good stuff is coming in all the time." },
-      { title: "Update from Ben Ridgeway 5 days ago", content: "Read me next for a good time." }
-    ]
-
-    Sem.Accordion(panels: panels.to_n, styled: true, fluid: true)
 
   end
 

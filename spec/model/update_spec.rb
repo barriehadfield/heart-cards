@@ -28,4 +28,9 @@ RSpec.describe Update, :type => :model do
     expect(subject).to_not be_valid
   end
 
+  it 'should scope with for_heart_categories' do
+    subject.save
+    expect(Update.for_heart_category(heart, :happiness).count).to equal(1)
+  end
+
 end
