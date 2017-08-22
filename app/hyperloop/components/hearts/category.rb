@@ -18,6 +18,7 @@ class Category < Hyperloop::Component
           category_tabs
           BR()
           unless params.edit_mode
+            NewUpdate(heart: params.heart, category: params.category)
             Updates(heart: params.heart, category: params.category)
             Sem.Divider(hidden: true)
           end
