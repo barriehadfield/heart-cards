@@ -12,18 +12,19 @@ if React::IsomorphicHelpers.on_opal_client?
   require 'browser'
   require 'browser/interval'
   require 'browser/delay'
+  require 'opal_hot_reloader'
+  OpalHotReloader.listen
 end
 
 require 'hyper-model'
 require 'hyper-store'
 require 'hyper-operation'
 require 'reactrb/auto-import'
-# require 'hyper-router/react-router-source'
+require 'hyper-router/react-router-source'
 require 'hyper-router'
 
 # unless Rails.env.production?
-  require 'opal_hot_reloader'
-  OpalHotReloader.listen
+
 # end
 
 require_tree './models' if RUBY_ENGINE == 'opal'
