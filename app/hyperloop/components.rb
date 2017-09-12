@@ -20,7 +20,7 @@ require 'hyper-model'
 require 'hyper-store'
 require 'hyper-operation'
 require 'reactrb/auto-import'
-require 'hyper-router/react-router-source'
+# require 'hyper-router/react-router-source'
 require 'hyper-router'
 
 # unless Rails.env.production?

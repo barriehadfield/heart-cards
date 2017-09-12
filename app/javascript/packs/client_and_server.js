@@ -2,8 +2,6 @@ ReactDOM = require('react-dom');
 React = require('react');
 createReactClass = require('create-react-class');
 
-ReactSelect = require('react-select');
-
 ReactRouter = require('react-router');
 ReactRouterDOM = require('react-router-dom');
 History = require('history');
