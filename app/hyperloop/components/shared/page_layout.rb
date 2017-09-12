@@ -6,26 +6,45 @@ class PageLayout < Hyperloop::Router::Component
       Sem.Sidebar(animation: :push, width: 'wide', visible: true, icon: :labeled) {
         side
       }
-      Sem.SidebarPusher {
+      Sem.SidebarPusher(as: :div) {
         body
       }
     }
   end
 
   def side
-    DIV {
-      Sem.Segment(basic: true) {
-        100.times { P {  "Alfie" } }
+    Sem.Segment(basic: true) {
+      new_heart
+      filter_buttons
+      100.times { P { 'on plane' } }
+    }
+  end
+
+  def filter_buttons
+    Filters()
+  end
+
+  def body
+    Sem.Segment(basic: true) {
+      Sem.Grid {
+        heart_cards
       }
     }
   end
 
-  def body
-    DIV(class: 'main-container') {
-      Sem.Segment(basic: true) {
-        Sem.Header { "Hello" }
-        100.times { P {  "Alfie sleeping" } }
-      }
-    }
+  def new_heart
+    HeartModal(heart: Heart.new, mode: :new)
   end
+
+  def heart_cards
+    Heart.reverse.each do |heart|
+      Sem.GridRow {
+        Sem.GridColumn {
+          HeartCard(heart: heart)
+        }
+      }
+    end
+  end
+
+
 end

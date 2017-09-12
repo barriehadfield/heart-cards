@@ -7,7 +7,7 @@ class HeartCard < Hyperloop::Component
   end
 
   render(DIV) do
-    Sem.Card(fluid: true, color: :blue) {
+    Sem.Card(fluid: true  , color: :blue) {
       Sem.CardContent {
         Sem.CardHeader { header }
       }
