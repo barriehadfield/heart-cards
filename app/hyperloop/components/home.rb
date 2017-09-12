@@ -20,18 +20,18 @@ class Home < Hyperloop::Router::Component
 
   def heart_cards
 
-    H1 { "hello" }
-    begin
-      heart = Heart.find_by(id: 1000).then do
-        puts "got here now"
-      end
-    rescue Exception => e
-      puts "rescue"
-    end
+    # H1 { "hello" }
+    # begin
+    #   heart = Heart.find_by(id: 1000).then do
+    #     puts "got here now"
+    #   end
+    # rescue Exception => e
+    #   puts "rescue"
+    # end
 
-    P { heart.name }
-    P { "present" } if heart.present?
-    P { "persisted?" } if heart.persisted?
+    # P { heart.name }
+    # P { "present" } if heart.present?
+    # P { "persisted?" } if heart.persisted?
 
 
     Heart.reverse.each do |heart|
