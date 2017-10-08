@@ -1,14 +1,13 @@
 class Filters < Hyperloop::Component
-  state selected: :live
 
   render(DIV) do
     Sem.ButtonGroup {
-      Sem.Button(active: (state.selected == :draft)) { 'Draft' }
-      .on(:click) { mutate.selected :draft }
-      Sem.Button(active: (state.selected == :live)) { 'Live' }
-      .on(:click) { mutate.selected :live }
-      Sem.Button(active: (state.selected == :sleeping)) { 'Sleeping' }
-      .on(:click) { mutate.selected :sleeping }
+      Sem.Button(active: (UiStore.filter == :draft)) { 'Draft' }
+      .on(:click) { UiStore.set_filter :draft }
+      Sem.Button(active: (UiStore.filter == :live)) { 'Live' }
+      .on(:click) { UiStore.set_filter :live }
+      Sem.Button(active: (UiStore.filter == :sleeping)) { 'Sleeping' }
+      .on(:click) { UiStore.set_filter :sleeping }
     }
   end
 end
