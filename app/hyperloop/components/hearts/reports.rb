@@ -3,15 +3,28 @@ class Reports < Hyperloop::Component
   param :category
 
   render(DIV) do
-    panels = []
+    BR()
     Report.for_heart_category(params.heart.id, params.category).reverse.each do |report|
-      panels << { title: ReportTitle(report: report).as_node,
-                  content: ReportPanel(report: report).as_node,
-                  key: report.id.to_s
-      }
+      ReportCard(report: report)
+      BR()
     end
+  end
+end
 
-    Sem.Accordion(panels: panels.to_n, styled: false, fluid: true) if panels.any?
+class ReportCard < Hyperloop::Component
+  param :report
+
+  render(DIV) do
+    Sem.Card(fluid: true) {
+      Sem.CardContent {
+        # Sem.CardHeader {
+          ReportPanel(report: params.report)
+        # }
+      }
+      Sem.CardContent(extra: true) {
+        ReportTitle(report: params.report)
+      }
+    }
   end
 end
 
