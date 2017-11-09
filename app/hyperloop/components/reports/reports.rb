@@ -17,9 +17,7 @@ class ReportCard < Hyperloop::Component
   render(DIV) do
     Sem.Card(fluid: true) {
       Sem.CardContent {
-        # Sem.CardHeader {
-          ReportPanel(report: params.report)
-        # }
+        ReportPanel(report: params.report)
       }
       Sem.CardContent(extra: true) {
         ReportTitle(report: params.report)
@@ -32,7 +30,7 @@ class ReportTitle < Hyperloop::Component
   param :report
   render do
     SPAN {
-      SPAN { "Report from #{params.report.member.full_name} " }
+      SPAN { "Report by #{params.report.member.full_name} " }
       TimeAgo(date: params.report.updated_at)
     }
   end
