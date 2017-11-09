@@ -7,6 +7,8 @@ class Update < ApplicationRecord
   belongs_to :member
   belongs_to :heart
 
+  has_many :comments
+
   scope :for_heart_category, ->(heart_id, category) { where(heart_id: heart_id).where(category: category) }
 
 end
