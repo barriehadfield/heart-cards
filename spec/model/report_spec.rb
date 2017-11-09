@@ -33,4 +33,12 @@ RSpec.describe Report, :type => :model do
     expect(Report.for_heart_category(heart, :happiness).count).to equal(1)
   end
 
+  it 'should save using the Operation' do
+    skip 'need to be able to set the current user'
+    expect(Report.count).to equal(0)
+    Member.current = member
+    SaveReportOp.run(heart: heart, report: subject, category: :retention)
+    expect(Report.count).to eq(1)
+  end
+
 end
