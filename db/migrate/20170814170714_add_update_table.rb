@@ -1,6 +1,6 @@
 class AddUpdateTable < ActiveRecord::Migration[5.1]
   def change
-    create_table :updates do |t|
+    create_table :reports do |t|
       t.text :body
       t.integer :heart_id
       t.integer :member_id

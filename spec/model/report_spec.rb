@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Update, :type => :model do
+RSpec.describe Report, :type => :model do
 
   let(:member) { Member.new(first_name: 'John', last_name: 'Smith', email: 'johm@smith.com', password: 'Test1234567') }
   let(:heart) { Heart.new(name: 'I am a test', created_by: member, updated_by: member) }
 
   subject {
-    described_class.new(body: 'I am an update', heart: heart, member: member, category: :happiness)
+    described_class.new(body: 'I am an report', heart: heart, member: member, category: :happiness)
   }
 
   it "should be valid with valid data" do
@@ -30,7 +30,7 @@ RSpec.describe Update, :type => :model do
 
   it 'should scope with for_heart_categories' do
     subject.save
-    expect(Update.for_heart_category(heart, :happiness).count).to equal(1)
+    expect(Report.for_heart_category(heart, :happiness).count).to equal(1)
   end
 
 end

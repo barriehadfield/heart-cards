@@ -1,4 +1,4 @@
-class Update < ApplicationRecord
+class Report < ApplicationRecord
 
   validates :body, presence: true
   validates :category, presence: true

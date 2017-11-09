@@ -6,7 +6,7 @@ class Member < ApplicationRecord
   has_many :created_hearts, foreign_key: :created_by_id, class_name: 'Heart'
   has_many :updated_hearts, foreign_key: :updated_by_id, class_name: 'Heart'
 
-  has_many :updates
+  has_many :reports
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable unless RUBY_ENGINE == 'opal'
