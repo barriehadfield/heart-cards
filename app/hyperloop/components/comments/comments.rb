@@ -3,20 +3,25 @@ class Comments < Hyperloop::Component
 
   render(DIV) do
     BR()
-    params.report.comments.each do |comment|
-      CommentLine(comment: comment)
-      BR()
-    end
+    Sem.CommentGroup(minimal: true) {
+      Sem.Header( as: 'h3', dividing: true ) { 'Comments' }
+      params.report.comments.each do |comment|
+        comment_item comment
+      end
+    }
     NewComment(report: params.report)
-
   end
 
-  class CommentLine < Hyperloop::Component
-    param :comment
-
-    render(DIV) do
-      LI { params.comment.body }
-    end
+  def comment_item comment
+    DIV(class: 'ui minimal comment') {
+      Sem.CommentContent {
+        Sem.CommentAuthor {
+          SPAN { comment.created_by.full_name }
+          Sem.CommentMetadata { "today" }
+        }
+        Sem.CommentText { comment.body }
+      }
+    }
   end
 
 end
