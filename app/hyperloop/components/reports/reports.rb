@@ -6,6 +6,7 @@ class Reports < Hyperloop::Component
     BR()
     Report.for_heart_category(params.heart.id, params.category).reverse.each do |report|
       ReportCard(report: report)
+      Comments(report: report)
       BR()
     end
   end
@@ -18,7 +19,6 @@ class ReportCard < Hyperloop::Component
     Sem.Card(fluid: true) {
       Sem.CardContent {
         ReportPanel(report: params.report)
-        NewComment(report: params.report)
       }
       Sem.CardContent(extra: true) {
         ReportTitle(report: params.report)

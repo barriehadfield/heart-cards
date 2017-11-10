@@ -8,7 +8,7 @@ class NewReport < Hyperloop::Component
     if state.open
       new_report
     else
-      Sem.Button(size: :mini) { "New Report" }.on(:click) {
+      Sem.Button(primary: true, size: :mini) { "New Report" }.on(:click) {
         @report = Report.new
         mutate.open true
       }
