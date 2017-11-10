@@ -18,6 +18,7 @@ class ReportCard < Hyperloop::Component
     Sem.Card(fluid: true) {
       Sem.CardContent {
         ReportPanel(report: params.report)
+        NewComment(report: params.report)
       }
       Sem.CardContent(extra: true) {
         ReportTitle(report: params.report)
@@ -40,6 +41,6 @@ class ReportPanel < Hyperloop::Component
   param :report
 
   render do
-    SPAN { params.report.body }
+    DIV { params.report.body }
   end
 end

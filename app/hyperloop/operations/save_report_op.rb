@@ -3,8 +3,10 @@ class SaveReportOp < Hyperloop::Operation
   param :report
   param :category
 
-  step { params.report.member = Member.current }
-  step { params.report.heart = params.heart }
-  step { params.report.category = params.category }
-  step { params.report.save.then }
+  step do
+    params.report.member = Member.current
+    params.report.heart = params.heart
+    params.report.category = params.category
+    params.report.save.then
+  end
 end

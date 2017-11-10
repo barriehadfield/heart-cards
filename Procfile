@@ -1,2 +1,2 @@
-web: bundle exec puma 
-hotloader: opal-hot-reloader -p 25222 -d app/hyperloop/components
+web: bundle exec puma
+hotloader: opal-hot-reloader -p 25222 -d app/hyperloop
