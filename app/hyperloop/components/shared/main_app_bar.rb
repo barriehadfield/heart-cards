@@ -1,7 +1,7 @@
 class MainAppBar < Hyperloop::Router::Component
 
   render(DIV) do
-    Sem.Menu(borderless: true, color: :blue, inverted: true, size: :huge) {
+    Sem.Menu(borderless: true, color: :pink, inverted: true, size: :huge) {
       Sem.Container {
         Sem.MenuItem { heart_cards }
         Sem.MenuItem { members }

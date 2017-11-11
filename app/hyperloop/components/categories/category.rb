@@ -28,7 +28,7 @@ class Category < Hyperloop::Component
   end
 
   def heading
-    Sem.Header(as: :h2, color: :blue) {
+    Sem.Header(as: :h2, color: :pink) {
       SPAN { params.name }
       # Sem.HeaderSubheader { params.description }
     } if params.heart["#{params.category}_bool"]
@@ -44,7 +44,7 @@ class Category < Hyperloop::Component
           }
         }
         Sem.GridColumn(width: 15) {
-          Sem.Header(as: :h2, color: :blue) {
+          Sem.Header(as: :h2, color: :pink) {
             SPAN { params.name }
             Sem.HeaderSubheader { params.description }
           }

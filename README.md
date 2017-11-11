@@ -170,7 +170,7 @@ For the Menu Component, if we were writing it in JSX syntax it would look like t
 ```javascript
 // if this were in JSX
 return (
-  <Menu inverted color='blue' size='huge'>
+  <Menu inverted color='pink' size='huge'>
     <Container>
       <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} > HOME </Menu.Item>
       <Menu.Item name='members' active={activeItem === 'members'} onClick={this.handleItemClick} > MEMBERS </Menu.Item>
@@ -184,7 +184,7 @@ And here is our Ruby version:
 ```ruby
 # app/hyperloop/components/shared/main_app_bar.rb
 render(DIV) do
-  Sem.Menu(inverted: true, color: :blue, size: :huge) {
+  Sem.Menu(inverted: true, color: :pink, size: :huge) {
     Sem.Container {
       Sem.MenuItem { heart_cards }
       Sem.MenuItem { members }
@@ -206,7 +206,7 @@ Sem = require('semantic-ui-react');
 
 The other thing to notice is that we do not use the dot notation in exactly the same way the JSX example does. `Menu.Item` becomes `MenuItem` and so-forth. `Menu.Item` is actually an assignment of the `MenuItem` object within the Menu object. The fact that `Menu.Item` is not imported as something to do with the way Webpack is importing it and beyond the scope of this tutorial.
 
-Finally notice how the JSX paramaters `inverted color='blue' size='huge'` become a hash `inverted: true, color: :blue, size: :huge` in the Ruby version.
+Finally notice how the JSX paramaters `inverted color='pink' size='huge'` become a hash `inverted: true, color: :pink, size: :huge` in the Ruby version.
 
 The information in this chapter should equip you with most of what you need to work with any JavaScript or React library. The only things we have not discussed is how to create and pass a React object to another object and how to handle JavaScript callbacks. We will address both these topics later in this tutorial.
 
