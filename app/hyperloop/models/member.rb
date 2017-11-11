@@ -12,6 +12,11 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable unless RUBY_ENGINE == 'opal'
 
+  # unless RUBY_ENGINE == 'opal'
+  #   include Gravtastic
+  #   gravtastic
+  # end
+
  def self.current
    Hyperloop::Application.acting_user_id ? find(Hyperloop::Application.acting_user_id) : Member.new
  end

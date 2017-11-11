@@ -14,6 +14,7 @@
 //= require 'jquery'
 //= require 'jquery_ujs'
 //= require_tree .
+//= require gravtastic
 
 //= require 'components'
 Opal.load('components');

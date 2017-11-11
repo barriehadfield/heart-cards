@@ -24,7 +24,7 @@ class NewReport < Hyperloop::Component
     }
     BR()
     Sem.Button(size: :mini, primary: true) { "Save" }.on(:click) {
-      save
+      save unless @report.body.blank?
     }
     Sem.Button(size: :mini) { "Cancel" }.on(:click) {
       cancel

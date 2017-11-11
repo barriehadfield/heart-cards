@@ -87,6 +87,7 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    gravtastic (3.2.6)
     hike (1.2.3)
     hyper-component (0.12.3)
       hyper-react (>= 0.12.3)
@@ -314,6 +315,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
+  gravtastic
   hyperloop
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
@@ -337,4 +339,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.3
+   1.16.0.pre.3
