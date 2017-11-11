@@ -7,16 +7,25 @@ class HeartCard < Hyperloop::Component
   end
 
   render(DIV) do
-    Sem.Card(fluid: true  , color: :pink) {
-      Sem.CardContent {
-        Sem.CardHeader { header }
+    Sem.Segment(basic: true, loading: params.heart.name.loading?) {
+      # loader
+      Sem.Card(fluid: true  , color: :pink) {
+        Sem.CardContent {
+          Sem.CardHeader { header }
+        }
+        Sem.CardContent { content }
+        Sem.CardContent(extra: true) { footer }
       }
-      Sem.CardContent { content }
-      Sem.CardContent(extra: true) { footer }
+      .on(:mouse_enter) { mutate.show_settings true }
+      .on(:mouse_leave) { mutate.show_settings false }
     }
-    .on(:mouse_enter) { mutate.show_settings true }
-    .on(:mouse_leave) { mutate.show_settings false }
   end
+
+  # def loader
+  #   Sem.Dimmer(inverted: true, active: params.heart.name.loading?) {
+  #     Sem.Loader(content: 'Bending time and space')
+  #   }
+  # end
 
   def header
     Sem.Grid {
