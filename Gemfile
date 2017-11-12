@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'hyperloop'
 gem 'devise'
-gem 'opal_hot_reloader', git: 'https://github.com/fkchang/opal-hot-reloader.git'
+gem 'opal_hot_reloader' #, git: 'https://github.com/fkchang/opal-hot-reloader.git'
 
 gem 'gravtastic'
 
