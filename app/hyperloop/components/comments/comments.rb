@@ -2,9 +2,9 @@ class Comments < Hyperloop::Component
   param :report
 
   render(DIV) do
+    Sem.Divider(hidden: true)
     Sem.CommentGroup(minimal: true, size: :mini) {
-      BR()
-      Sem.Header( as: 'h4', dividing: true ) { 'Comments' }
+      Sem.Header(as: 'h4' ) { 'Comments' }
       params.report.comments.each do |comment|
         comment_item comment
       end

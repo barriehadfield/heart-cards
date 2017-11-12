@@ -4,10 +4,11 @@ class ReportCard < Hyperloop::Component
   render(DIV) do
     Sem.Card(fluid: true) {
       Sem.CardContent {
-        panel
-      }
-      Sem.CardContent(extra: true) {
         title
+      }
+      Sem.CardContent {
+        panel
+        Comments(report: params.report)
       }
     }
   end
