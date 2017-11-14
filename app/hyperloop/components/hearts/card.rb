@@ -4,6 +4,31 @@ class HeartCard < Hyperloop::Component
 
   before_mount do
     mutate.show_settings false
+
+    `
+    initialValue = Value.fromJSON({
+      document: {
+        nodes: [
+          {
+            kind: 'block',
+            type: 'paragraph',
+            nodes: [
+              {
+                kind: 'text',
+                leaves: [
+                  {
+                    text: 'A line of text in a paragraph. Jan this is where to EDIT'
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    })`
+    mutate.value `initialValue`
+
+
   end
 
   render(DIV) do
@@ -18,9 +43,18 @@ class HeartCard < Hyperloop::Component
     .on(:mouse_leave) { mutate.show_settings false }
   end
 
+  def change v
+    # `value = v.value`
+    # `console.log(JSON.stringify(value.toJSON()) )`
+    mutate.value `v.value`
+  end
 
   def header
     Sem.Grid {
+
+    H1 { "Edit the text ---> " }
+    Slate.Editor(value: state.value, onChange: lambda { |v| change v })
+
       Sem.GridRow(columns: 2) {
         Sem.GridColumn(width: 15) {
           Sem.Header(as: :h2) {

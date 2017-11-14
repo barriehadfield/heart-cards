@@ -49,6 +49,7 @@ class HeartModal < Hyperloop::Component
     BR()
     P { "Choose one or more categories from the HEART framework you would like to track" }
     Categories(heart: params.heart, edit_mode: true)
+
   end
 
   def actions
