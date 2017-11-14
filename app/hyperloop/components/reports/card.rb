@@ -14,11 +14,25 @@ class ReportCard < Hyperloop::Component
   end
 
   def title
-    SPAN {
-      SPAN { "Report by #{params.report.member.full_name} " }
-      TimeAgo(date: params.report.updated_at)
+    Sem.CommentGroup(size: :huge) {
+      DIV(class: 'ui minimal comment') {
+        Sem.CommentAvatar(src: `Gravtastic(#{params.report.member.email.to_s})`  )
+        Sem.CommentContent {
+          Sem.CommentAuthor {
+            DIV { params.report.member.full_name }
+            Sem.HeaderSubheader { TimeAgo(date: params.report.member.updated_at) }
+          }
+        }
+      }
     }
   end
+
+  # def title
+  #   SPAN {
+  #     SPAN { "Report by #{params.report.member.full_name} " }
+  #     TimeAgo(date: params.report.updated_at)
+  #   }
+  # end
 
   def panel
     DIV { params.report.body }

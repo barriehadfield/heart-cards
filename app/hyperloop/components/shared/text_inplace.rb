@@ -14,7 +14,7 @@ class TextInplace < Hyperloop::Component
        end
      }
    else
-     P { params.model.send(params.field) }
+     H1 { params.model.send(params.field) }
    end
  end
 
