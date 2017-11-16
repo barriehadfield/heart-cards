@@ -39,7 +39,8 @@ class ReportCard < Hyperloop::Component
   # end
 
   def panel
-    DIV { params.report.body }
+    # DIV { params.report.body }
+    DIV(class: 'trix-content', dangerously_set_inner_HTML: { __html: params.report.body })
   end
 
 end

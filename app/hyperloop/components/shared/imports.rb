@@ -1,7 +1,3 @@
-class Slate < React::NativeLibrary
-  imports 'SlateReact'
-end
-
-class SlateValue < React::NativeLibrary
-  imports 'Value'
+class Trix < React::NativeLibrary
+  imports 'ReactTrix'
 end

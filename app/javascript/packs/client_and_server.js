@@ -10,6 +10,8 @@ History = require('history');
 
 Sem = require('semantic-ui-react');
 
+ReactTrix = require('react-trix').TrixEditor;
+
 ReactTimeAgo = require('react-timeago').default;
 
 console.log('All imported JS libs loaded (c_and_s.js)')

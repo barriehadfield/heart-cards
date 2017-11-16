@@ -4056,6 +4056,12 @@ react-timeago@3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-3.2.1.tgz#dcca61514dac108d8f86ec7e40c947296a6954a0"
 
+react-trix@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-trix/-/react-trix-0.2.2.tgz#c11eecc74db0898fb6ce0d4a24e200a4e27236f2"
+  dependencies:
+    trix "^0.10.1"
+
 react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
@@ -4854,6 +4860,14 @@ trim-newlines@^1.0.0:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+
+trix@0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-0.11.1.tgz#ffe54f2757c2c2385b8424fd5c5d2ab712a09acc"
+
+trix@^0.10.1:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-0.10.2.tgz#85fc61bfed5d29676e400cc70cbd9040b753f5b6"
 
 tty-browserify@0.0.0:
   version "0.0.0"
