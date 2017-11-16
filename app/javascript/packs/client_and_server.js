@@ -12,7 +12,4 @@ Sem = require('semantic-ui-react');
 
 ReactTimeAgo = require('react-timeago').default;
 
-SlateReact = require('slate-react');
-Value = require('slate').Value;
-
 console.log('All imported JS libs loaded (c_and_s.js)')

@@ -17,10 +17,13 @@ class NewReport < Hyperloop::Component
 
   def new_report
     Sem.Form {
-      Sem.TextArea(value: @report.body.to_s, placeholder: "Your report please", autoHeight: true)
-      .on(:change) do |e|
-        @report.body = e.target.value
-      end
+      # Sem.TextArea(value: @report.body.to_s, placeholder: "Your report please", autoHeight: true)
+      # .on(:change) do |e|
+      #   @report.body = e.target.value
+      # end
+
+      # TrixEditor()
+
     }
     BR()
     Sem.Button(size: :mini, primary: true) { "Save" }.on(:click) {
