@@ -8,7 +8,7 @@ class ReportCard < Hyperloop::Component
       }
       Sem.CardContent {
         panel
-        Comments(report: params.report)
+        comments
       }
     }
   end
@@ -25,6 +25,10 @@ class ReportCard < Hyperloop::Component
         }
       }
     }
+  end
+
+  def comments
+    Comments(report: params.report)
   end
 
   # def title
