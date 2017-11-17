@@ -4,6 +4,6 @@ class Heart < ApplicationRecord
 
   has_many :reports
 
-  scope :active, -> () { order(id: :desc).where("id > ?", 1) }
+  scope :active, -> () { order(id: :desc).where("id > ?", 0) }
 
 end
