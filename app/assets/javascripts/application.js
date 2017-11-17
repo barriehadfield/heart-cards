@@ -15,6 +15,6 @@
 //= require 'jquery_ujs'
 //= require_tree .
 //= require gravtastic
-
+//= require 'hyperloop/pusher'
 //= require 'components'
 Opal.load('components');
