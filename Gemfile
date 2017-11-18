@@ -37,6 +37,7 @@ gem 'pusher'
 # source 'https://rubygems.org'
 source 'http://demo.kursator.com:9292'
 gem 'hyperloop', '0.15.0-sachsenring-lap4'
+gem 'closure-compiler'
 
 gem 'devise'
 gem 'opal_hot_reloader' #, git: 'https://github.com/fkchang/opal-hot-reloader.git'
