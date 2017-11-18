@@ -113,8 +113,6 @@ That last line tells our Rails server to route all requests to our Hyperloop Com
 
 The Home Component generates the primary user interface for this application. We will spend a little time going through this line by line as there might be several new concepts here.
 
-> **Note on coding style:** There are two coding conventions used here which are purely a matter of coding style. You will notice that the HTML elements (`DIV`) are in caps which would indicate a constant. We are using caps as we believe it makes the code easier to read. If you do not like this then `div` will work just as well. Secondly (and perhaps more controversially) you will notice the misuse of `{ }` curly braces extending over more than one line whereas the Ruby norm is to use `do end` blocks if the block extends over more than one line and `{ }` if it just one line. Personally, I like curly braces for Component and HTML element blocks and `do end` for conditional or looping logic. I find this easier to read and work with, but if it hurts your eyes, you can use `do end` instead.
-
 ```ruby
 # app/hyperloop/components/home.rb
 class Home < Hyperloop::Router::Component
