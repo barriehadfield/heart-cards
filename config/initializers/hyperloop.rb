@@ -3,9 +3,9 @@
 Hyperloop.configuration do |config|
   config.cancel_import('hyper-router/react-router-source')
   config.compress_system_assets = false
-  # config.transport = :simple_poller
   config.transport = :pusher
   config.channel_prefix = "Hyperloop"
+  config.hyperloop.auto_config = true
   config.opts = {
     app_id: "432445",
     key: "e1ef057dfe6f7903c24f",
