@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/janbiedermann/hyperloop-config.git
+  revision: cd20059bb0cf15e29de6309ecabf937d1afbfb8b
+  branch: sachsenring
+  specs:
+    hyperloop-config (0.15.0.pre.sachsenring.pre.lap5)
+      opal (~> 0.10.5)
+      opal-browser (~> 0.2.0)
+      uglifier
+
 GEM
   remote: https://rubygems.org/
   remote: http://demo.kursator.com:9292/
@@ -124,10 +134,6 @@ GEM
       opal-rails (~> 0.9.3)
       rails (~> 5.1.4)
       react-rails (>= 2.3.0, < 2.5.0)
-    hyperloop-config (0.15.0.pre.sachsenring.pre.lap5)
-      opal (~> 0.10.5)
-      opal-browser (~> 0.2.0)
-      uglifier
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
@@ -321,6 +327,7 @@ DEPENDENCIES
   devise
   gravtastic
   hyperloop (= 0.15.0.pre.sachsenring.pre.lap5)
+  hyperloop-config!
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   opal_hot_reloader
