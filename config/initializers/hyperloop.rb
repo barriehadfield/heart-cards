@@ -5,7 +5,7 @@ Hyperloop.configuration do |config|
   config.compress_system_assets = false
   config.transport = :pusher
   config.channel_prefix = "Hyperloop"
-  config.hyperloop.auto_config = true
+  # config.auto_config = true
   config.opts = {
     app_id: "432445",
     key: "e1ef057dfe6f7903c24f",

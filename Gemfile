@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'hyperloop'
 gem 'pusher'
 
+gem 'react-rails', '~> 2.3.1'
+
 # source 'https://rubygems.org'
 source 'http://demo.kursator.com:9292'
 gem 'hyperloop', '0.15.0-sachsenring-lap5'
