@@ -1,4 +1,10 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {class:  'ui large form'}) do |f| %>
+    <!-- <div class='ui segment basic'> -->
+      <h1 class="ui header">Sign in to HEART
+        <div class="sub header">Enter your details below or Sign Up</div>
+      </h1>
+    <!-- </div> -->
+  </br>
 
     <div class="field">
       <div class='ui fluid left icon input'>
@@ -22,7 +28,7 @@
     <% end -%> -->
 
     <div>
-      <%= f.submit "Log in", class: "ui red large fluid button" %>
+      <%= f.submit "Sign in", class: "ui purple large fluid button" %>
     </div>
 
     <%= render "devise/shared/links" %>

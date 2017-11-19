@@ -14,13 +14,18 @@
   </head>
 
   <body>
+
+    <div id="bg">
+      <img src="/images/bg.jpg" alt="">
+    </div>
+
     <div class='ui middle aligned center aligned grid', style='height: 100%;'>
       <div class='column', style='max-width: 450px;'>
-        <img src='/images/hearty.png', width='450px'>
-        <div class = 'ui segment'>
+        <div class = 'ui segment' id='padded_dialog'>
           <%= yield %>
         </div>
       </div>
     </div>
+
   </body>
 </html>
