@@ -13,8 +13,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.paths << Rails.root.join('app', 'hyperloop').to_s
-Rails.application.config.assets.precompile += %w( client-only.js components.js )
-
-Rails.application.config.assets.paths << Rails.root.join('public', 'packs').to_s
-Rails.application.config.assets.paths << Rails.root.join('public', 'assets').to_s
+# Rails.application.config.assets.paths << Rails.root.join('app', 'hyperloop').to_s
+# Rails.application.config.assets.precompile += %w( client-only.js components.js )
+#
+# Rails.application.config.assets.paths << Rails.root.join('public', 'packs').to_s
+# Rails.application.config.assets.paths << Rails.root.join('public', 'assets').to_s
