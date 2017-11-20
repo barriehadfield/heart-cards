@@ -46,7 +46,7 @@ gem 'opal_hot_reloader' #, git: 'https://github.com/fkchang/opal-hot-reloader.gi
 
 gem 'gravtastic'
 
-# gem 'webpacker'
+gem 'webpacker'
 
 gem 'statesman'
 
