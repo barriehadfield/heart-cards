@@ -2,15 +2,15 @@ class ReportCard < Hyperloop::Component
   param :report
 
   render(DIV) do
-    Sem.Card(fluid: true) {
-      Sem.CardContent {
+    # Sem.Card(fluid: true) {
+      # Sem.CardContent {
         title
-      }
-      Sem.CardContent {
+      # }
+      # Sem.CardContent {
         panel
         comments
-      }
-    }
+      # }
+    # }
   end
 
   def title

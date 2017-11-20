@@ -7,24 +7,21 @@ class Category < Hyperloop::Component
   param :edit_mode
 
   render(DIV) do
-    Sem.Grid {
-      Sem.GridRow {
-        Sem.GridColumn {
-          params.edit_mode ? check_box : heading
+    Sem.Container {
+      Sem.Card(fluid: true) {
+        Sem.CardContent {
+          params.edit_mode ? check_box : heading if params.heart["#{params.category}_bool"] || params.edit_mode
+          category_tabs if params.heart["#{params.category}_bool"]
         }
-      } if params.heart["#{params.category}_bool"] || params.edit_mode
-      Sem.GridRow {
-        Sem.GridColumn {
-          category_tabs
-         }
-      } if params.heart["#{params.category}_bool"]
+      }
+      BR()
     } if params.heart["#{params.category}_bool"] || params.edit_mode
   end
 
   def heading
     Sem.Header(as: :h2, color: :pink) {
       SPAN { params.name }
-      # Sem.HeaderSubheader { params.description }
+      Sem.HeaderSubheader { params.description }
     } if params.heart["#{params.category}_bool"]
   end
 
