@@ -16,5 +16,5 @@
 //= require_tree .
 //= require gravtastic
 //= require 'hyperloop/pusher'
-//= require 'components'
-Opal.load('components');
+
+//= require hyperloop-loader
