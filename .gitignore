@@ -20,3 +20,6 @@
 .env
 /public/packs
 /node_modules
+/public/packs
+/public/packs-test
+/node_modules
