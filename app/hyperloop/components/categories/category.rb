@@ -16,12 +16,6 @@ class Category < Hyperloop::Component
       Sem.GridRow {
         Sem.GridColumn {
           category_tabs
-          BR()
-          unless params.edit_mode
-            NewReport(heart: params.heart, category: params.category)
-            Reports(heart: params.heart, category: params.category)
-            Sem.Divider(hidden: true)
-          end
          }
       } if params.heart["#{params.category}_bool"]
     } if params.heart["#{params.category}_bool"] || params.edit_mode
@@ -54,6 +48,13 @@ class Category < Hyperloop::Component
   end
 
   def category_tabs
+
+    reports = DIV {
+        NewReport(heart: params.heart, category: params.category)
+        Reports(heart: params.heart, category: params.category)
+        Sem.Divider(hidden: true)
+    }.as_node unless params.edit_mode
+
     goals = DIV {
       TextInplace(field: "#{params.category}_goals", model: params.heart,
       placeholder: "What are you trying to achieve?", edit_mode: params.edit_mode)
@@ -69,7 +70,10 @@ class Category < Hyperloop::Component
       placeholder: "And how will you measure this?", edit_mode: params.edit_mode)
     }.as_node
 
-    panes = [ {menuItem: 'Goals',   render: -> { goals.to_n }},
+    panes = []
+    panes << {menuItem: 'Reports',   render: -> { reports.to_n }} unless params.edit_mode
+
+    panes.concat [ {menuItem: 'Goals',   render: -> { goals.to_n }},
               {menuItem: 'Signals', render: -> { signals.to_n }},
               {menuItem: 'Metrics', render: -> { metrics.to_n }}
     ]

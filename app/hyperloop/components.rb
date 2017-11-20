@@ -7,14 +7,14 @@
 #
 # require 'hyper-component'
 #
-# if React::IsomorphicHelpers.on_opal_client?
+if React::IsomorphicHelpers.on_opal_client?
 #   require 'opal-jquery'
 #   require 'browser'
 #   require 'browser/interval'
 #   require 'browser/delay'
-#   # require 'opal_hot_reloader'
-#   # OpalHotReloader.listen
-# end
+  require 'opal_hot_reloader'
+  OpalHotReloader.listen
+end
 #
 # require 'hyper-model'
 # require 'hyper-store'
