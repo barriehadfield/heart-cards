@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'hyperloop'
 gem 'pusher'
 
+gem 'newrelic_rpm'
+
 gem 'react-rails', '~> 2.3.1'
 
 # source 'https://rubygems.org'

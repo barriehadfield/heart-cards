@@ -365,3 +365,41 @@ thanks @barriehadfield for the bird's eye view, I was not quite sure on how to d
 
 Barrie Hadfield @barriehadfield 08:05
 Can I add just one more thing to the mix - Operations. In designing the COMPS architecture, we knew it was essential that Components and Models should communicate directly as this is the most effective and efficient way of displaying and managing persistent state. However, we also know that a terrible design pattern is where your business logic ends up in your Models (which should have a single purpose of wrapping the database) or worse in your Components (which become unusable and un-maintainable). So this is where Operations came in. Whenever you need to make a sequence of changes to your Models, it is better to wrap those changes in an Operation and run it there, passing in the affected Models. This gives you discreet, testable pockets of business functionality which are abstracted from your UI. You have the choice of normal Operations (which can run anywhere) and their special cousins ServerOps (which guarantee to only run on the server as they can do things that can only be done on the server). The amazing thing about Operations and ServerOps is that your client-side code does not really need to know the difference, its actually an implementation detail for you (a ServerOp can send an email because the Mailer is on the server). Invoking this Operation (from the client) is the same as invoking a normal Operation, the fact that it runs on the server is just an implementation detail.
+
+------------------
+
+INFO: The configuration option 'compress_system_assets' is no longer used.
+D, [2017-11-21T07:06:52.825895 #4] DEBUG -- :   Hyperloop::Connection::QueuedMessage Load (0.7ms)  SELECT  "hyperloop_queued_messages".* FROM "hyperloop_queued_messages" WHERE "hyperloop_queued_messages"."connection_id" = $1 LIMIT $2  [["connection_id", 0], ["LIMIT", 1]]
+D, [2017-11-21T07:06:52.836282 #4] DEBUG -- :   Hyperloop::Connection::QueuedMessage Load (0.7ms)  SELECT  "hyperloop_queued_messages".* FROM "hyperloop_queued_messages" WHERE "hyperloop_queued_messages"."connection_id" = $1 LIMIT $2  [["connection_id", 0], ["LIMIT", 1]]
+^Crails aborted!
+Interrupt:
+/app/vendor/bundle/ruby/2.4.0/gems/hyper-operation-0.15.0.pre.sachsenring.pre.lap5/lib/hyper-operation/transport/connection.rb:17:in `needs_init?'
+/app/vendor/bundle/ruby/2.4.0/gems/hyper-operation-0.15.0.pre.sachsenring.pre.lap5/lib/hyper-operation/transport/connection.rb:21:in `create_table'
+/app/vendor/bundle/ruby/2.4.0/gems/hyper-operation-0.15.0.pre.sachsenring.pre.lap5/lib/hyper-operation/transport/connection.rb:61:in `build_tables'
+/app/vendor/bundle/ruby/2.4.0/gems/hyper-operation-0.15.0.pre.sachsenring.pre.lap5/lib/hyper-operation/transport/hyperloop.rb:19:in `block (2 levels) in reset_operations'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/lazy_load_hooks.rb:67:in `block in execute_hook'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/lazy_load_hooks.rb:60:in `with_execution_control'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/lazy_load_hooks.rb:65:in `execute_hook'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/lazy_load_hooks.rb:50:in `block in run_load_hooks'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/lazy_load_hooks.rb:49:in `each'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/lazy_load_hooks.rb:49:in `run_load_hooks'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/application/finisher.rb:73:in `block in <module:Finisher>'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/initializable.rb:30:in `instance_exec'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/initializable.rb:30:in `run'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/initializable.rb:59:in `block in run_initializers'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/initializable.rb:58:in `run_initializers'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/application.rb:353:in `initialize!'
+/app/config/environment.rb:5:in `<top (required)>'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/dependencies.rb:292:in `require'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/dependencies.rb:292:in `block in require'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/dependencies.rb:258:in `load_dependency'
+/app/vendor/bundle/ruby/2.4.0/gems/activesupport-5.1.4/lib/active_support/dependencies.rb:292:in `require'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/application.rb:329:in `require_environment!'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/application.rb:445:in `block in run_tasks_blocks'
+/app/vendor/bundle/ruby/2.4.0/gems/sprockets-rails-3.2.1/lib/sprockets/rails/task.rb:62:in `block (2 levels) in define'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/commands/rake/rake_command.rb:21:in `block in perform'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/commands/rake/rake_command.rb:18:in `perform'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/command.rb:46:in `invoke'
+/app/vendor/bundle/ruby/2.4.0/gems/railties-5.1.4/lib/rails/commands.rb:16:in `<top (required)>'
+/app/bin/rails:4:in `require'
+/app/bin/rails:4:in `<main>'
