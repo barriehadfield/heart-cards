@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: heartcardapp_production
-  username: heartcardapp
-  password: <%= ENV['HEARTCARDAPP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
