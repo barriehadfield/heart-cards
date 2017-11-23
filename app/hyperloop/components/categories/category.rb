@@ -11,6 +11,7 @@ class Category < Hyperloop::Component
       Sem.Card(fluid: true) {
         Sem.CardContent {
           heading
+          Sem.Divider(hidden: true)
           category_tabs if params.heart["#{params.category}_bool"]
         }
       }

@@ -9,10 +9,10 @@ class HeartCard < Hyperloop::Component
   render(DIV) do
     Sem.Card(fluid: true ) {
       Sem.CardContent {
-        Sem.CardHeader { header }
+        header
       }
       Sem.CardContent { content }
-      Sem.CardContent(extra: true) { footer }
+      # Sem.CardContent(extra: true) { footer }
     }
     .on(:mouse_enter) { mutate.show_settings true }
     .on(:mouse_leave) { mutate.show_settings false }
@@ -22,15 +22,12 @@ class HeartCard < Hyperloop::Component
     Sem.Grid {
       Sem.GridRow(columns: 2) {
         Sem.GridColumn(width: 15) {
-          Sem.Header(as: :h2) {
-            # Sem.Icon(name: :heart, color: :pink)
-            Sem.HeaderContent {
-              SPAN { " #{params.heart.name}" }
-              Sem.HeaderSubheader {
-                SPAN { "Updated " }
-                TimeAgo(date: params.heart.updated_at)
-                SPAN { " by #{params.heart.created_by.full_name}" }
-              }
+          Sem.Header(as: :h1) {
+            SPAN { " #{params.heart.name}" }
+            Sem.HeaderSubheader {
+              SPAN { "Updated " }
+              TimeAgo(date: params.heart.updated_at)
+              SPAN { " by #{params.heart.created_by.full_name}" }
             }
           }
         }
@@ -43,9 +40,9 @@ class HeartCard < Hyperloop::Component
     Categories(heart: params.heart, edit_mode: false)
   end
 
-  def footer
-    SPAN { "Created by #{params.heart.created_by.full_name} " }
-    TimeAgo(date: params.heart.created_at)
-  end
+  # def footer
+  #   SPAN { "Created by #{params.heart.created_by.full_name} " }
+  #   TimeAgo(date: params.heart.created_at)
+  # end
 
 end
