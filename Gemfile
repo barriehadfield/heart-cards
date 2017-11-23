@@ -39,7 +39,6 @@ gem 'newrelic_rpm'
 gem 'react-rails', '~> 2.3.1'
 
 # source 'https://rubygems.org'
-gem 'hyperloop-config', git: 'https://github.com/janbiedermann/hyperloop-config.git', branch: 'sachsenring'
 source 'http://demo.kursator.com:9292'
 gem 'hyperloop', '0.15.0-sachsenring-lap5'
 
