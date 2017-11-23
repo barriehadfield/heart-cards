@@ -10,7 +10,7 @@ class Category < Hyperloop::Component
     Sem.Container {
       Sem.Card(fluid: true) {
         Sem.CardContent {
-          params.edit_mode ? check_box : heading if params.heart["#{params.category}_bool"] || params.edit_mode
+          heading
           category_tabs if params.heart["#{params.category}_bool"]
         }
       }
@@ -19,6 +19,23 @@ class Category < Hyperloop::Component
   end
 
   def heading
+    Sem.Grid {
+      Sem.GridRow(columns: 2) {
+        Sem.GridColumn(width: 13) {
+          params.edit_mode ? check_box : category_name if params.heart["#{params.category}_bool"] || params.edit_mode
+        }
+        Sem.GridColumn(width: 3, textAlign: :right) {
+          Sem.Button(size: :small) { "New Report" }.on(:click) {
+            ReportStore.create_new_report
+            ReportStore.set_new_report_visible true
+            # mutate.open true
+          } unless params.edit_mode
+        }
+      }
+    }
+  end
+
+  def category_name
     Sem.Header(as: :h2, color: :pink) {
       SPAN { params.name }
       Sem.HeaderSubheader { params.description }
