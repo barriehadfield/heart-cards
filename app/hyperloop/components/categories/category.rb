@@ -66,7 +66,7 @@ class Category < Hyperloop::Component
     reports = DIV {
         NewReport(heart: params.heart, category: params.category)
         Reports(heart: params.heart, category: params.category)
-        Sem.Divider(hidden: true)
+        # Sem.Divider(hidden: true)
     }.as_node unless params.edit_mode
 
     goals = DIV {

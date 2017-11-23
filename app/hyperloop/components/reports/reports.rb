@@ -7,8 +7,7 @@ class Reports < Hyperloop::Component
     Report.for_heart_category(params.heart.id, params.category).reverse.each do |report|
       # Sem.Header( as: 'h2', dividing: true ) { 'Report' }
       ReportCard(report: report)
-      BR()
-      Sem.Divider()
+
     end
   end
 end

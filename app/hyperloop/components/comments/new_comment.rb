@@ -7,7 +7,7 @@ class NewComment < Hyperloop::Component
     if state.open
       new_comment
     else
-      Sem.Button(size: :mini, secondary: true) { "Comment" }.on(:click) {
+      Sem.Button(size: :mini) { "Comment" }.on(:click) {
         @comment = Comment.new
         mutate.open true
       }

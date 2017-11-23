@@ -2,20 +2,22 @@ class ReportCard < Hyperloop::Component
   param :report
 
   render(DIV) do
-    title
-    panel
-    comments
-  end
-
-  def title
-    Sem.CommentGroup(size: :huge) {
+    Sem.CommentGroup(size: :large) {
       DIV(class: 'ui minimal comment') {
         Sem.CommentAvatar(src: `Gravtastic(#{params.report.member.email.to_s})`  )
         Sem.CommentContent {
           Sem.CommentAuthor {
             DIV { params.report.member.full_name }
-            Sem.HeaderSubheader { TimeAgo(date: params.report.member.updated_at) }
+            SPAN(class: 'metadata no_left_indent') { TimeAgo(date: params.report.member.updated_at) }
           }
+        }
+        Sem.CommentContent {
+          # Sem.Divider(hidden: true)
+          BR()
+          panel
+        }
+        Sem.CommentContent {
+          comments
         }
       }
     }
