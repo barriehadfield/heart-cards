@@ -7,7 +7,7 @@ class HeartCard < Hyperloop::Component
   end
 
   render(DIV) do
-    Sem.Card(fluid: true  , color: :pink) {
+    Sem.Card(fluid: true ) {
       Sem.CardContent {
         Sem.CardHeader { header }
       }
@@ -23,7 +23,7 @@ class HeartCard < Hyperloop::Component
       Sem.GridRow(columns: 2) {
         Sem.GridColumn(width: 15) {
           Sem.Header(as: :h2) {
-            Sem.Icon(name: :heart, color: :pink)
+            # Sem.Icon(name: :heart, color: :pink)
             Sem.HeaderContent {
               SPAN { " #{params.heart.name}" }
               Sem.HeaderSubheader {
