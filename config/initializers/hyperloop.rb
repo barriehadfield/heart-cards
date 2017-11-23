@@ -2,7 +2,7 @@
 # If you are not using ActionCable, see http://ruby-hyperloop.io/docs/models/configuring-transport/
 Hyperloop.configuration do |config|
   # config.cancel_import('hyper-router/react-router-source')
-  config.compress_system_assets = false
+  # config.compress_system_assets = false
   config.transport = :pusher
   config.channel_prefix = "Hyperloop"
   # config.auto_config = true
