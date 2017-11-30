@@ -12,8 +12,8 @@ if React::IsomorphicHelpers.on_opal_client?
 #   require 'browser'
 #   require 'browser/interval'
 #   require 'browser/delay'
-  # require 'opal_hot_reloader'
-  # OpalHotReloader.listen
+  require 'opal_hot_reloader'
+  OpalHotReloader.listen
 end
 #
 # require 'hyper-model'
