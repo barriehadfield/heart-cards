@@ -1,6 +1,6 @@
 GEM
   remote: https://rubygems.org/
-  remote: http://demo.kursator.com:9292/
+  remote: https://gems.ruby-hyperloop.org/
   specs:
     actioncable (5.1.4)
       actionpack (= 5.1.4)
@@ -84,47 +84,47 @@ GEM
     gravtastic (3.2.6)
     hike (1.2.3)
     httpclient (2.8.3)
-    hyper-component (0.15.0.pre.sachsenring.pre.lap5)
-      actionview (~> 5.1.4)
-      hyper-react (= 0.15.0.pre.sachsenring.pre.lap5)
-      hyperloop-config (= 0.15.0.pre.sachsenring.pre.lap5)
+    hyper-component (1.0.0.pre.lap9)
+      actionview (>= 4.0.0)
+      hyper-react (= 1.0.0.pre.lap9)
+      hyperloop-config (= 1.0.0.pre.lap9)
       opal-rails (~> 0.9.3)
       react-rails (>= 2.3.0, < 2.5.0)
-    hyper-mesh (0.15.0.pre.sachsenring.pre.lap5)
-      activerecord (~> 5.1.4)
-      hyper-component (= 0.15.0.pre.sachsenring.pre.lap5)
-      hyper-operation (= 0.15.0.pre.sachsenring.pre.lap5)
-    hyper-model (0.15.0.pre.sachsenring.pre.lap5)
-      hyper-mesh (= 0.15.0.pre.sachsenring.pre.lap5)
-    hyper-operation (0.15.0.pre.sachsenring.pre.lap5)
-      activerecord (~> 5.1.4)
-      hyper-component (= 0.15.0.pre.sachsenring.pre.lap5)
-      hyperloop-config (= 0.15.0.pre.sachsenring.pre.lap5)
+    hyper-mesh (1.0.0.pre.lap9)
+      activerecord (>= 4.0.0)
+      hyper-component (= 1.0.0.pre.lap9)
+      hyper-operation (= 1.0.0.pre.lap9)
+    hyper-model (1.0.0.pre.lap9)
+      hyper-mesh (= 1.0.0.pre.lap9)
+    hyper-operation (1.0.0.pre.lap9)
+      activerecord (>= 4.0.0)
+      hyper-component (= 1.0.0.pre.lap9)
+      hyperloop-config (= 1.0.0.pre.lap9)
       mutations
       opal-activesupport
-    hyper-react (0.15.0.pre.sachsenring.pre.lap5)
-      hyper-store (= 0.15.0.pre.sachsenring.pre.lap5)
+    hyper-react (1.0.0.pre.lap9)
+      hyper-store (= 1.0.0.pre.lap9)
       opal (~> 0.10.5)
       opal-activesupport (~> 0.3.0)
-    hyper-router (4.2.6.pre.sachsenring.pre.lap5)
-      hyper-component (= 0.15.0.pre.sachsenring.pre.lap5)
-      hyper-react (= 0.15.0.pre.sachsenring.pre.lap5)
+    hyper-router (4.2.6.pre.lap9)
+      hyper-component (= 1.0.0.pre.lap9)
+      hyper-react (= 1.0.0.pre.lap9)
       opal-browser (~> 0.2.0)
       opal-rails (~> 0.9.3)
       react-rails (>= 2.3.0, < 2.5.0)
-    hyper-store (0.15.0.pre.sachsenring.pre.lap5)
-      hyperloop-config (= 0.15.0.pre.sachsenring.pre.lap5)
+    hyper-store (1.0.0.pre.lap9)
+      hyperloop-config (= 1.0.0.pre.lap9)
       opal (~> 0.10.5)
-    hyperloop (0.15.0.pre.sachsenring.pre.lap5)
-      hyper-model (= 0.15.0.pre.sachsenring.pre.lap5)
-      hyper-router (= 4.2.6.pre.sachsenring.pre.lap5)
-      hyperloop-config (= 0.15.0.pre.sachsenring.pre.lap5)
+    hyperloop (1.0.0.pre.lap9)
+      hyper-model (= 1.0.0.pre.lap9)
+      hyper-router (= 4.2.6.pre.lap9)
+      hyperloop-config (= 1.0.0.pre.lap9)
       mini_racer (~> 0.1.14)
       opal-browser (~> 0.2.0)
       opal-rails (~> 0.9.3)
-      rails (~> 5.1.4)
+      rails (>= 4.0.0)
       react-rails (>= 2.3.0, < 2.5.0)
-    hyperloop-config (0.15.0.pre.sachsenring.pre.lap5)
+    hyperloop-config (1.0.0.pre.lap9)
       opal (~> 0.10.5)
       opal-browser (~> 0.2.0)
       uglifier
@@ -321,7 +321,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   gravtastic
-  hyperloop (= 0.15.0.pre.sachsenring.pre.lap5)
+  hyperloop (= 1.0.0.pre.lap9)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   newrelic_rpm
@@ -347,4 +347,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.0

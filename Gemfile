@@ -38,9 +38,8 @@ gem 'newrelic_rpm'
 
 gem 'react-rails', '~> 2.3.1'
 
-# source 'https://rubygems.org'
-source 'http://demo.kursator.com:9292'
-gem 'hyperloop', '0.15.0-sachsenring-lap5'
+source 'https://gems.ruby-hyperloop.org'
+gem 'hyperloop', '1.0.0-lap9'
 
 gem 'devise'
 gem 'opal_hot_reloader' #, git: 'https://github.com/fkchang/opal-hot-reloader.git'

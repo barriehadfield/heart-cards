@@ -26,7 +26,7 @@ class Category < Hyperloop::Component
           params.edit_mode ? check_box : category_name if params.heart["#{params.category}_bool"] || params.edit_mode
         }
         Sem.GridColumn(width: 3, textAlign: :right) {
-          Sem.Button(size: :small) { "New Report" }.on(:click) {
+          Sem.Button(size: :small, secondary: true) { "New Report" }.on(:click) {
             ReportStore.create_new_report
             ReportStore.set_new_report_visible true
             # mutate.open true
